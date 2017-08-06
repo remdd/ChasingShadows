@@ -10,11 +10,11 @@ app.use(logger('dev'));
 
 //	ROUTES	//
 app.get('/', function(req, res) {
-	res.render('home')
+	res.render('index');
 });
 
 app.get('/about', function(req, res) {
-	res.render('about')
+	res.render('about');
 });
 
 
