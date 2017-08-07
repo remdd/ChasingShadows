@@ -77,12 +77,13 @@ h2 {
 } h3 {
 	font-size: 0.9em;
 	margin: 0 0 10px 0;
+	white-space: nowrap;
 }
 ul {
 	padding: 0;
 	list-style: none;
 }
-.galleryLink {
+.galLink {
 	padding-left: 15px;
 }
 
@@ -107,21 +108,29 @@ ul {
 } .thumbRichmond {
 	padding: 0 15px 35px 15px;
 }
-#galleryDiv {
+.galDiv {
 	display: none;
 }
 
 
 
 
-.popUp {
-	height: 100vh;
-	width: 100vw;
-	background: white;
+.popUpImg {
+	max-width: 100%;
+	max-height: 100%;
 }
-
-
-
+.modalContainer {
+/*	padding-top: 40px;*/
+}
+.picControls {
+	justify-content: center;
+	display: flex;
+	font-size: 1.5em;
+	padding: 0 20px;
+}
+.picControl {
+	padding: 40px 40px 40px 40px;
+}
 
 
 
