@@ -5,7 +5,6 @@
 	top: 5vh;
 	margin-left: auto;
 	margin-right: auto;
-/*	padding: 0;*/
 }
 body {
 	text-transform: uppercase;
@@ -32,12 +31,12 @@ img {
 }
 .col {
 	padding: 0;
-	justify-content: center;
+/*	justify-content: center;*/
 }
 .showPane {
+	text-align: center;
 /*	background: yellow;*/
 	height: 90vh;
-	align-items: center;
 }
 .navCol {
 /*	background: pink;*/
@@ -63,7 +62,7 @@ img {
 
 
 .thumbImg {
-	max-width: 100%;
+	width: 25%;
 } .thumb4x4 {
 	padding: 0 15px 45px 15px;
 } .thumbEven {

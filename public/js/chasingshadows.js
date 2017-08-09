@@ -31,6 +31,10 @@ $(function() {
 		});
 	});
 
+	var $grid = $('#showThumbnails').masonry({
+		columnWidth: '.thumbImg',
+		itemSelector: '.thumbImg'
+	});
 
 
 	//	Show contained galleries when a category title is clicked, hide contents of other categories
@@ -50,34 +54,29 @@ $(function() {
 				$(this).fadeOut(function() {
 					removeThumbnails();
 					addThumbnails(galName, galClass, galCount);
-					$('#showThumbnails').fadeIn(imgTime);
 				});
 			}
 		});
 	});
 
 	removeThumbnails = function() {
-		$('#showThumbnails').children().children().remove();
-		$('#showThumbnails').append('<div> </div>');
+		$('#showThumbnails').children().remove();
 	}
 
+
 	addThumbnails = function(galName, galClass, galCount) {
-		var j = 1;
 		for(var i = 1; i <= galCount; i ++) {
 			var name = galName + '_' + i;
-			var imgDiv = $('#thumbCol' + j);
-			imgDiv.append('<img class="thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
-			imgDiv.children().last().attr('data-name', name);
-			imgDiv.children().last().attr('data-galName', galName);
-			imgDiv.children().last().addClass(galClass);
-			imgDiv.children().last().attr('data-galCount', galCount);
-			imgDiv.children().last().attr('data-imgNo', i);
-			imgDiv.children().last().attr('data-name', name);
-			if(j === 4) {
-				j = 1;
-			} else {
-				j++;
-			}
+			var $imgDiv = $('#showThumbnails');
+			$imgDiv.append('<img class="thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+			var $img = $imgDiv.children().last();
+			$img.attr('data-name', name);
+			$img.attr('data-galName', galName);
+			$img.addClass(galClass);
+			$img.attr('data-galCount', galCount);
+			$img.attr('data-imgNo', i);
+			$img.attr('data-name', name);
+			$grid.masonry( 'addItems', $img );
 		}
 		$('.thumbImg').click(function() {
 			var galName = $(this).attr('data-galName');
@@ -94,6 +93,10 @@ $(function() {
 					$('.picControls').fadeIn(imgTime);
 				});
 			});
+		});
+		$('#showThumbnails').imagesLoaded(function() {
+			$('#showThumbnails').fadeIn(imgTime);
+			$grid.masonry();
 		});
 	};
 
