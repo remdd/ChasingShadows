@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chasing Shadows</title>
+	<script
+	  src="http://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/chasingshadows.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/chasingshadows.css">
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</head>
+<body>
+
+<!--	COMMON 		-->
+	
+	<div class="container-fluid allDiv">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="absDiv">
+
+
+	<!--	MAIN PAGE 	-->
+				<div class="row contentPane contentMain">
+					<div class="col col-sm-0 col-md-0 col-lg-0 bufferPane"></div>
+					<div class="col col-sm-12 col-md-3 col-lg-2 navPane navPaneMain">
+						<div class="logo logoMain">
+							<h1 class="logoChasingMain">Chasing</h1>
+							<h1 class="logoShadowsMain">Shadows</h1>
+						</div>
+						<div class="subLogo">
+							<h2 class="logoPhotographyMain">Photography by</h2>
+							<h2 class="logoLKBMain">Laura Kate Bemrose</h2>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<ul><h3 class="categoryLink">Nature</h3>
+							<li hidden class="galLink galLinkMain" data-pics="14" data-gallery="Flowers" data-thumbClass="thumb4x4"><h3 id="navLinkFlowers">Hampton Court Flower Show</h3></li>
+							<li hidden class="galLink galLinkMain" data-pics="13" data-gallery="Richmond" data-thumbClass="thumbRichmond"><h3 id="navLinkRichmond">Richmond Park</h3></li>
+							<li hidden class="galLink galLinkMain" data-gallery="Raindrops"><h3 id="navLinkRaindrops">Raindrops</h3></li>
+						</ul>
+						<ul><h3 class="categoryLink">Travel</h3>
+							<li hidden class="galLink galLinkMain" data-gallery="Stockholm"><h3 id="navLinkFlowers">Stockholm</h3></li>
+							<li hidden class="galLink galLinkMain" data-gallery="Cuba"><h3 id="navLinkRichmond">Cuba</h3></li>
+							<li hidden class="galLink galLinkMain" data-gallery="Paris"><h3 id="navLinkRaindrops">Paris</h3></li>
+						</ul>
+						<ul><h3 class="categoryLink">Commissions</h3>
+							<li hidden class="galLink galLinkMain" data-gallery="WeddingFlowers"><h3 id="navLinkWeddingFlowers">Wedding flowers</h3></li>
+						</ul>
+						<br>
+						<br>
+						<h3>About</h3>
+					</div>
+
+					<div class="col col-sm-12 col-md-9 col-lg-8 showPane showPaneMain">
+						<div class="showDiv coverImg" id="coverImgMain">
+							<img class="fullPageImg" src="img/Cover.JPG">
+						</div>
+						<div hidden class="showDiv galDiv" id="galDivMain">
+							<div class="row" id="thumbsMain">
+								<div> </div>
+								<!-- thumnnails added here -->
+							</div>
+						</div>
+						<div hidden class="showDiv" id="popUpMain">
+							<img class="popUpImg" id="popUpImgMain" src="">
+							<div class="col col-lg-12 picControls">
+								<span>
+									<i class="fa fa-chevron-left picControl" id="prevBtnMain" aria-hidden="true"></i>
+									<i class="fa fa-times picControl" id="closePopUpMain" aria-hidden="true"></i>
+									<i class="fa fa-chevron-right picControl" id="nextBtnMain" aria-hidden="true"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="col col-sm-0 col-md-0 col-lg-2 bufferPane"></div>
+				</div>
+
+
+
+	<!--	MUSIC PAGE 	-->
+				<div hidden class="row contentPane contentMusic">
+					<div class="col col-sm-0 col-md-0 col-lg-0 bufferPane"></div>
+					<div class="col col-sm-12 col-md-3 col-lg-2 navPane navPaneMusic">
+						<div class="logo logoMusic">
+							<h1 class="logoChasingMusic">Chasing</h1>
+							<h1 class="logoShadowsMusic">Shadows</h1>
+						</div>
+						<div class="subLogo">
+							<h2 class="logoPhotographyMusic">Photography by</h2>
+							<h2 class="logoLKBMusic">Laura Kate Bemrose</h2>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<ul><h3 class="categoryLink">Gigs</h3>
+							<li><h3 hidden class="galLink galLinkMusic">Yussef</h3></li>
+							<li><h3 hidden class="galLink galLinkMusic">Richmond Park</h3></li>
+							<li><h3 hidden class="galLink galLinkMusic">Raindrops</h3></li>
+						</ul>
+						<ul><h3 ="categoryLink-travel">Fashion</h3>
+							<li><h3 hidden class="galLink galLinkMusic">Stockholm</h3></li>
+							<li><h3 hidden class="galLink galLinkMusic">Cuba</h3></li>
+							<li><h3 hidden class="galLink galLinkMusic">Paris</h3></li>
+						</ul>
+						<br>
+						<br>
+						<h3>About</h3>
+					</div>
+
+					<div class="col col-sm-12 col-md-9 col-lg-8 showPane showPaneMusic">
+						<div class="showDiv coverImg" id="coverImgMusic">
+							<img class="fullPageImg" src="img/CoverMusic.JPG">
+						</div>
+						<div hidden class="showDiv galDiv" id="galDivMusic">
+							<div class="row" id="thumbsMusic">
+								<div> </div>
+								<!-- thumnnails added here -->
+							</div>
+						</div>
+					</div>
+					<div class="col col-sm-0 col-md-0 col-lg-2 bufferPane"></div>
+				</div>
+
+
+	<!--	COMMON 		-->
+			</div>
+			<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+		<div class="footer navbar-fixed-bottom">
+			<div class="col col-sm-0 col-md-0 col-lg-10"></div>
+			<div class="col col-sm-12 col-md-12 col-lg-2 footerIcons">
+				<i class="fa fa-instagram" aria-hidden="true"></i>
+				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+				<div class="flipContainer">
+					<div id="flipBtn">
+						<div class="flipDiv flipFront">
+							<div class="flipTriangleFront"></div>
+						</div>
+						<div class="flipDiv flipBack">
+							<div class="flipTriangleBack"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					
+				</div>
+			</div>
+			</div>
+
+		</div>
+
+ -->
+
+	</div>
+
+</body>
+</html>

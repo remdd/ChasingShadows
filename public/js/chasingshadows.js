@@ -1,128 +1,155 @@
-$('document').ready(function() {
+$(function() {
 
-	var imgDivTransTime = 200;
-	var navLinkTransTime = 200;
+	var imgTime = 300;
+	var navTime = 200;
 	var themeChangeTime = 500;
 	var mainTheme = true;
 
-	var galCount;
-	var galName;
-	var galClass;
+	$('.bigText').bigtext({maxfontsize: 40});
 
 	$('#flipBtn').click(function() {
 		$(this).toggleClass('flipped');
-		$('.bgDiv').toggleClass('blackTheme');
-		if(mainTheme) {
-			$('.contentMain').fadeOut(themeChangeTime, function(){
-				$('.contentMusic').fadeIn(themeChangeTime);
-				$('i').addClass('flippedIcon');
-			});
-		} else {
-			$('.contentMusic').fadeOut(themeChangeTime, function(){
-				$('.contentMain').fadeIn(themeChangeTime);
-				$('i').removeClass('flippedIcon');
-			});
-		}
-		mainTheme = !mainTheme;
+		$('body').toggleClass('blackTheme');
+		$('i').toggleClass('whiteIcons');
+		$('.showDiv').each(function() {
+			if($(this).is(':visible')) {
+				$(this).fadeOut(function() {
+					removeThumbnails();
+					if(mainTheme) {
+						$('#musicNav').fadeIn(themeChangeTime);
+						$('#mainNav').fadeOut(themeChangeTime);
+						$('#musicCover').fadeIn(themeChangeTime);
+						$('.bigText').bigtext({maxfontsize: 40});
+					} else {
+						$('#mainNav').fadeIn(themeChangeTime);
+						$('#musicNav').fadeOut(themeChangeTime);
+						$('#showCover').fadeIn(themeChangeTime);
+					}
+					mainTheme = !mainTheme;
+				});
+			}
+		});
 	});
 
+
+
+	//	Show contained galleries when a category title is clicked, hide contents of other categories
 	$('.categoryLink').click(function(e) {
 		if(e.target !== this) {return;}
-		$(this).parent().find('li').toggle(navLinkTransTime);
-		$('.galLink').not($(this).parent().find('li')).hide(navLinkTransTime);
+		$('.galLink').not($(this).parent().find('li')).hide();
+		$(this).parent().find('li').toggle(navTime);
 	});
 
+	//	Hide any previous displayed image or thumbnails then show correct thumbnails when a gallery name is clicked
 	$('.galLinkMain').click(function() {
-		galCount = $(this).attr('data-pics');
-		galName = $(this).attr('data-gallery');
-		galClass = $(this).attr('data-thumbClass');
-		if($('#coverImgMain').is(':visible')) {
-			$('#coverImgMain').fadeOut(imgDivTransTime, function() {
-				removeThumbnails();
-				addThumbnails();
-				$('#galDivMain').fadeIn(imgDivTransTime);
-			});			
-
-		} else {
-			$('#galDivMain').fadeOut(imgDivTransTime, function() {
-				removeThumbnails();
-				addThumbnails();
-				$('#galDivMain').fadeIn(imgDivTransTime);
-			});
-		}
+		var galCount = $(this).attr('data-pics');
+		var galName = $(this).attr('data-gallery');
+		var galClass = $(this).attr('data-thumbClass');
+		$('.showDiv').each(function() {
+			if($(this).is(':visible')) {
+				$(this).fadeOut(function() {
+					removeThumbnails();
+					addThumbnails(galName, galClass, galCount);
+					$('#showThumbnails').fadeIn(imgTime);
+				});
+			}
+		});
 	});
 
 	removeThumbnails = function() {
-		$('#thumbsMain').children().remove();
-		$('#thumbsMain').append('<div> </div>');
+		$('#showThumbnails').children().children().remove();
+		$('#showThumbnails').append('<div> </div>');
 	}
 
-	addThumbnails = function() {
+	addThumbnails = function(galName, galClass, galCount) {
+		var j = 1;
 		for(var i = 1; i <= galCount; i ++) {
 			var name = galName + '_' + i;
-			if(galClass === 'thumbRichmond') {
-				if(i === 1 || i === 5 || i === 8 || i === 12) {
-					$('#thumbsMain').append('<div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12"></div>');
-				}
-				$('#thumbsMain').children().last().append('<img class="thumbImg ' + galClass 
-					+ '" data-name="' + name + '" '
-					+ '" data-gal="' + galName + '" ' 
-					+ '" data-galCount="' + galCount + '" '
-					+ '" data-imgNo="' + i + '"'
-					+ ' src="img/' + galName + '/Thumbs/' + name + '.JPG"></div>');
+			var imgDiv = $('#thumbCol' + j);
+			imgDiv.append('<img class="thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+			imgDiv.children().last().attr('data-name', name);
+			imgDiv.children().last().attr('data-galName', galName);
+			imgDiv.children().last().addClass(galClass);
+			imgDiv.children().last().attr('data-galCount', galCount);
+			imgDiv.children().last().attr('data-imgNo', i);
+			imgDiv.children().last().attr('data-name', name);
+			if(j === 4) {
+				j = 1;
 			} else {
-				$('#thumbsMain').append('<div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12"></div>');
-				$('#thumbsMain').children().last().append('<img class="thumbImg ' + galClass 
-					+ '" data-name="' + name + '" ' 
-					+ '" data-gal="' + galName + '" ' 
-					+ '" data-galCount="' + galCount + '" '
-					+ '" data-imgNo="' + i + '"'
-					+ ' src="img/' + galName + '/Thumbs/' + name + '.JPG"></div>');
+				j++;
 			}
 		}
 		$('.thumbImg').click(function() {
-			var gal = $(this).attr('data-gal');
+			var galName = $(this).attr('data-galName');
 			var name = $(this).attr('data-name');
 			var imgNo = $(this).attr('data-imgNo');
 			var galCount = $(this).attr('data-galCount');
-			$('#popUpImgMain').attr('src', 'img/' + gal + '/' + name + '.JPG');
-			$('#popUpImgMain').attr('data-gal', gal);
-			$('#popUpImgMain').attr('data-imgNo', gal);
-			$('#thumbsMain').fadeOut(imgDivTransTime, function() {
-				$('#popUpMain').fadeIn(imgDivTransTime);
+			$('#showThumbnails').fadeOut(imgTime, function() {
+				$('#zoomImg').attr('data-galName', galName);
+				$('#zoomImg').attr('data-imgNo', imgNo);
+				$('#zoomImg').attr('data-galCount', galCount);
+				$('#zoomImg').attr('src', 'img/' + galName + '/' + name + '.JPG');
+				$('#showZoomImg').imagesLoaded(function() {
+					$('#showZoomImg').fadeIn(imgTime);
+					$('.picControls').fadeIn(imgTime);
+				});
 			});
 		});
 	};
 
-	$('#closePopUpMain').click(function() {
-		$('#popUpMain').fadeOut(imgDivTransTime, function() {
-			$('#thumbsMain').fadeIn(imgDivTransTime);
+	/*	Popup image controls 	*/
+	$('#closePopUp').click(function() {
+		$('.picControls').fadeOut(imgTime);
+		$('#showZoomImg').fadeOut(imgTime, function() {
+			$('#showThumbnails').fadeIn(imgTime);
 		});
 	});
-	$('#prevBtnMain').click(function() {
-		var gal = $('#popUpImgMain').attr('data-gal');
-		var no = parseInt($('#popUpImgMain').attr('data-imgNo'));
-		var galCount = parseInt($('#popUpImgMain').attr('data-galCount'));
-		alert(gal + no + galCount);
-		if(no === 1) {
-			no = galCount;
+	$('#prevBtn').click(function() {
+		var galName = $('#zoomImg').attr('data-galName');
+		var imgNo = parseInt($('#zoomImg').attr('data-imgNo'));
+		var galCount = parseInt($('#zoomImg').attr('data-galCount'));
+		if(imgNo === 1) {
+			imgNo = galCount;
 		} else {
-			no--;
+			imgNo--;
 		}
-		$('#popUpImgMain').fadeOut(imgDivTransTime, function() {
-			$('#popUpImgMain').attr('src', 'img/' + gal + '/' + gal + '_' + no + '.JPG');
-			$('#popUpImgMain').fadeIn(imgDivTransTime);
+		$('#showZoomImg').fadeOut(imgTime, function() {
+			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
+			$('#zoomImg').attr('data-imgNo', imgNo);
 		});
+		$('#showZoomImg').fadeIn(imgTime);
+	});
+	$('#nextBtn').click(function() {
+		var galName = $('#zoomImg').attr('data-galName');
+		var imgNo = parseInt($('#zoomImg').attr('data-imgNo'));
+		var galCount = parseInt($('#zoomImg').attr('data-galCount'));
+		if(imgNo === galCount) {
+			imgNo = 1;
+		} else {
+			imgNo++;
+		}
+		$('#showZoomImg').fadeOut(imgTime, function() {
+			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
+			$('#zoomImg').attr('data-imgNo', imgNo);
+		});
+		$('#showZoomImg').fadeIn(imgTime);
 	});
 
 
 	$('.logoMain').click(function() {
-		if($('#coverImgMain').is(':visible')) {
-			return;
-		} else {
-			$('#galDivMain').fadeOut(imgDivTransTime, function() {
-				$('#coverImgMain').fadeIn(imgDivTransTime);
-			});
-		}
-	})
+		$('.showDiv').each(function() {
+			if($(this).is(':visible')) {
+				$(this).fadeOut(function() {
+					$('.picControls').fadeOut(imgTime);
+					removeThumbnails();
+					if(mainTheme) {
+						$('#showCover').fadeIn(imgTime);
+					} else {
+						$('#musicCover').fadeIn(imgTime);
+					}
+				});
+			}
+		});
+	});
+
 });

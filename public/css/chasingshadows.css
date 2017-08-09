@@ -1,58 +1,109 @@
-html {
-	height: 
+.allDiv {
+	width: 96%;
+	max-width: 1872px;
+	position: relative;
+	top: 5vh;
+	margin-left: auto;
+	margin-right: auto;
+/*	padding: 0;*/
 }
-.bgDiv {
-	transition: background 1s, color 1s, font 1s;
+body {
 	text-transform: uppercase;
-	height: 100vh;
-	padding: 0;
+	transition: background 1s;
+}
+img {
+	max-width: 100%;
+	max-height: 90vh;
 }
 .blackTheme {
 	background: black;
 }
-.container-fluid {
-}
-.footer {
-	padding-bottom: 50px;
-}
-.allDiv {
-	padding-top: 50px;
-	position: relative;
-}
-
-/*	Containers for all content */
-.absDiv {
-	position: absolute;
-	margin: 0;
-}
-.contentPane {
-	margin: 0;
-}
-.contentMain {
+#mainNav {
 	font-family: 'Spectral', serif;
 	color: black;
 }
-.contentMusic {
-	font-family: 'Quicksand', sans-serif;
+#musicNav {
+	font-family: 'Questrial', sans-serif;
 	color: white;
+	position: absolute;
+}
+#musicCover {
+	position: absolute;
+}
+.col {
+	padding: 0;
+	justify-content: center;
 }
 .showPane {
+/*	background: yellow;*/
+	height: 90vh;
+	align-items: center;
+}
+.navCol {
+/*	background: pink;*/
+	height: 90vh;
+	position: sticky;
+}
+.iconCol {
+/*	background: pink;*/
+	height: 90vh;
+}
+.bufferCol {
 	padding: 0;
+	margin: 0;
+	background: green;
+}
+
+#showThumbnails {
+/*	background: green;*/
+}
+#showZoomImg {
+	text-align: center;
 }
 
 
+.thumbImg {
+	max-width: 100%;
+} .thumb4x4 {
+	padding: 0 15px 45px 15px;
+} .thumbEven {
+	padding: 0 15px 30px 15px;
+}
+
+
+/*#thumbCol1 {
+	background: yellow;
+}#thumbCol2 {
+	background: pink;
+}#thumbCol3 {
+	background: orange;
+}#thumbCol4 {
+	background: lightblue;
+}*/
+
+.picControls {
+	position: absolute;
+	bottom: 0px;
+	font-size: 1.5em;
+	width: 100%;
+	text-align: center;
+} .controlSpan {
+	margin: 0 auto;
+} .picControl {
+	padding: 0 40px 0 40px;
+	text-shadow: 0 0 3px white;
+}
 
 
 
 /*	Nav 	*/
-.navPane {
-}
 .logo {
 	margin-bottom: 10px;
 	margin-top: -5px;
 } .logo h1 {
 	margin: 0 0 0 0;
-	font-size: 2.6em;
+/*	font-size: 2.6em;*/
+	display: inline;
 } .logoChasingMain {
 	letter-spacing: 7.8px;
 } .logoShadowsMain {
@@ -77,7 +128,7 @@ h2 {
 } h3 {
 	font-size: 0.9em;
 	margin: 0 0 10px 0;
-	white-space: nowrap;
+/*	white-space: nowrap;*/
 }
 ul {
 	padding: 0;
@@ -87,79 +138,35 @@ ul {
 	padding-left: 15px;
 }
 
-
-
-/*	Show */
-.fullPageImg {
-	max-width: 100%;
-	max-height: 100%;
-	padding: 0 50px;
+/*	Footer icons */
+.footerIcons {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
-#thumbs {
-	margin: 0;
-	padding: 0;
-} #thumbs div {
-	padding: 0;
-}
-.thumbImg {
-	max-width: 100%;
-} .thumb4x4 {
-	padding: 0 15px 45px 15px;
-} .thumbRichmond {
-	padding: 0 15px 35px 15px;
-}
-.galDiv {
-	display: none;
-}
-
-
-
-
-.popUpImg {
-	max-width: 100%;
-	max-height: 100%;
-}
-.modalContainer {
-/*	padding-top: 40px;*/
-}
-.picControls {
-	justify-content: center;
-	display: flex;
-	font-size: 1.5em;
-	padding: 0 20px;
-}
-.picControl {
-	padding: 40px 40px 40px 40px;
-}
-
-
-
-/*	Flip button */
-.footer i {
+.footerIcons i {
 	font-size: 1.6em;
 	padding-right: 20px;
 	color: black;
 	transition: color 1s;
 }
+/*	Flip button */
 .flippedIcon {
 	color: white !important;
-}
-.flipContainer {						/* container */
+} .flipContainer {
   	display: inline-block;
   	top: 2.5px;
 	width: 20px;
 	height: 20px;
 	perspective: 300px;
 	position: relative;
-}
-#flipBtn {								/* card */
+} #flipBtn {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	transform-style: preserve-3d;
 	transition: transform 1s;
-}
-.flipDiv {								/* figure */
+} .flipDiv {
 	padding: 3px 0 0 4px;
 	backface-visibility: hidden;
   	position: absolute;
@@ -167,33 +174,26 @@ ul {
   	width: 100%;
   	height: 100%;
 	background: black;
-}
-.flipFront {							/* front */
+} .flipFront {
 	background: black;
-}
-.flipBack {								/* back */
+} .flipBack {
 	background: white;
 	transform: rotateY( 180deg );
-}
-.flipped {
+} .flipped {
 	transform: rotateY( 180deg );
-}
-.flipTriangleFront {
+} .flipTriangleFront {
 	width: 0;
 	height: 0;
 	border-style: solid;
 	border-width: 7px 0 7px 12.12px;
 	border-color: transparent transparent transparent #ffffff;
-}
-.flipTriangleBack {
+} .flipTriangleBack {
 	z-index: 1;
 	width: 0;
 	height: 0;
 	border-style: solid;
 	border-width: 7px 12.12px 7px 0;
 	border-color: transparent #000000 transparent transparent;
-}
-.footerIcons {
-	text-align: right;
-	padding-right: 30px;
+} .whiteIcons {
+	color: white !important;
 }
