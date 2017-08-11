@@ -1,3 +1,6 @@
+/*html {
+	overflow-y: scroll;			 prevents page moving a few pixels to the left on pages requiring scroll 
+}*/
 .allDiv {
 	width: 96%;
 	max-width: 1872px;
@@ -8,7 +11,7 @@
 }
 body {
 	text-transform: uppercase;
-	transition: background 1s;
+	transition: background 0.5s;
 }
 img {
 	max-width: 100%;
@@ -17,37 +20,34 @@ img {
 .blackTheme {
 	background: black;
 }
-#mainNav {
+.mainNav {
 	font-family: 'Spectral', serif;
 	color: black;
 }
-#musicNav {
+.musicNav {
 	font-family: 'Questrial', sans-serif;
 	color: white;
-	position: absolute;
 }
 #musicCover {
 	position: absolute;
 }
 .col {
 	padding: 0;
-/*	justify-content: center;*/
 }
 .showPane {
 	text-align: center;
-/*	background: yellow;*/
 	height: 90vh;
 }
 .navCol {
-/*	background: pink;*/
 	height: 90vh;
 	position: fixed;
 	padding: 0;
+	padding-right: 10px;
 	margin: 0;
 }
 .iconCol {
-/*	background: pink;*/
 	height: 90vh;
+	position: fixed;
 }
 .bufferCol {
 	padding: 0;
@@ -55,17 +55,17 @@ img {
 	background: green;
 }
 
-#showThumbnails {
-/*	background: green;*/
-}
 #showZoomImg {
 	text-align: center;
 }
 
 
-.thumbImg {
-	width: 25%;
-} .thumb4x4 {
+.bigThumbImg {
+	max-width: 50%;
+} .smallThumbImg {
+	max-width: 25%;
+}
+ .thumb4x4 {
 	padding: 0 15px 45px 15px;
 } .thumbEven {
 	padding: 0 15px 30px 15px;
@@ -142,6 +142,41 @@ ul {
 	padding-left: 15px;
 }
 
+/*	Mini header */
+.miniNavContainer {
+	position: relative;
+	min-height: 35px;
+	width: 100%;
+	background: yellow;
+}
+.miniNav {
+	position: absolute;
+	width: 100%;
+}
+.miniLogo {
+	width: 60%;
+	white-space: nowrap;
+	display: inline-block;
+	position: relative;
+	padding-bottom: 10px;
+}
+.miniLogoHeader {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+}
+.miniNavBtns {
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+} .miniNavBtns i {
+	font-size: 1.6em;
+	color: black;
+	transition: color 1s;
+	padding-left: 10px;
+}
+
 /*	Footer icons */
 .footerIcons {
 	position: absolute;
@@ -164,7 +199,7 @@ ul {
 	height: 20px;
 	perspective: 300px;
 	position: relative;
-} #flipBtn {
+} .flipBtn {
 	width: 100%;
 	height: 100%;
 	position: absolute;

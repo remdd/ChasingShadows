@@ -2,14 +2,15 @@ $(function() {
 
 	var imgTime = 300;
 	var navTime = 200;
-	var themeChangeTime = 500;
+	var themeChangeTime = 200;
 	var mainTheme = true;
 
 	$('.bigText').bigtext({maxfontsize: 40});
+	$('.bigTextSm').bigtext({maxfontsize: 30, minfontsize: 18});
 
-	$('#flipBtn').click(function() {
-		$("#flipBtn").css("pointer-events", "none");		// Disable further click events on click
-		$(this).toggleClass('flipped');
+	$('.flipBtn').click(function() {
+		$(".flipBtn").css("pointer-events", "none");		// Disable further click events on click
+		$('.flipBtn').toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
 		$('i').toggleClass('whiteIcons');
 		$('.showDiv').each(function() {
@@ -17,20 +18,20 @@ $(function() {
 				$(this).fadeOut(function() {
 					removeThumbnails();
 					if(mainTheme) {
-						$('#mainNav').fadeOut(themeChangeTime, function() {
-							$('#mainNav').addClass('invisible');
-							$('#musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+						$('.mainNav').fadeOut(themeChangeTime, function() {
+							$('.mainNav').addClass('invisible');
+							$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
 							$('.bigText').bigtext({maxfontsize: 40});
 							$('#musicCover').fadeIn(themeChangeTime, function() {
-								$("#flipBtn").css("pointer-events", "auto");		// Re-enable click events
+								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
 					} else {
-						$('#musicNav').fadeOut(themeChangeTime, function() {
-							$('#musicNav').addClass('invisible');
-							$('#mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+						$('.musicNav').fadeOut(themeChangeTime, function() {
+							$('.musicNav').addClass('invisible');
+							$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
 							$('#showCover').fadeIn(themeChangeTime, function() {
-								$("#flipBtn").css("pointer-events", "auto");
+								$(".flipBtn").css("pointer-events", "auto");
 							});
 						});
 					}
@@ -106,6 +107,7 @@ $(function() {
 		});
 		$('#showThumbnails').imagesLoaded(function() {
 			$('#showThumbnails').fadeIn(imgTime);
+			resizeThumbs();
 			$grid.masonry();
 		});
 	};
@@ -172,6 +174,22 @@ $(function() {
 				});
 			}
 		});
+	});
+
+	function resizeThumbs() {
+		if ($(window).width() > 767) {
+	        $('.thumbImg').removeClass('bigThumbImg');
+	        $('.thumbImg').addClass('smallThumbImg');
+	    } else {
+	        $('.thumbImg').removeClass('smallThumbImg');
+	        $('.thumbImg').addClass('bigThumbImg');
+	    }
+		$grid.masonry();
+	};
+
+	$(window).resize(function() {
+		console.log($(window).width());
+		resizeThumbs();
 	});
 
 });
