@@ -8,6 +8,7 @@ $(function() {
 	$('.bigText').bigtext({maxfontsize: 40});
 
 	$('#flipBtn').click(function() {
+		$("#flipBtn").css("pointer-events", "none");		// Disable further click events on click
 		$(this).toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
 		$('i').toggleClass('whiteIcons');
@@ -16,14 +17,22 @@ $(function() {
 				$(this).fadeOut(function() {
 					removeThumbnails();
 					if(mainTheme) {
-						$('#musicNav').fadeIn(themeChangeTime);
-						$('#mainNav').fadeOut(themeChangeTime);
-						$('#musicCover').fadeIn(themeChangeTime);
-						$('.bigText').bigtext({maxfontsize: 40});
+						$('#mainNav').fadeOut(themeChangeTime, function() {
+							$('#mainNav').addClass('invisible');
+							$('#musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+							$('.bigText').bigtext({maxfontsize: 40});
+							$('#musicCover').fadeIn(themeChangeTime, function() {
+								$("#flipBtn").css("pointer-events", "auto");		// Re-enable click events
+							});
+						});
 					} else {
-						$('#mainNav').fadeIn(themeChangeTime);
-						$('#musicNav').fadeOut(themeChangeTime);
-						$('#showCover').fadeIn(themeChangeTime);
+						$('#musicNav').fadeOut(themeChangeTime, function() {
+							$('#musicNav').addClass('invisible');
+							$('#mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+							$('#showCover').fadeIn(themeChangeTime, function() {
+								$("#flipBtn").css("pointer-events", "auto");
+							});
+						});
 					}
 					mainTheme = !mainTheme;
 				});
@@ -46,6 +55,7 @@ $(function() {
 
 	//	Hide any previous displayed image or thumbnails then show correct thumbnails when a gallery name is clicked
 	$('.galLinkMain').click(function() {
+		$('.picControls').fadeOut(imgTime);
 		var galCount = $(this).attr('data-pics');
 		var galName = $(this).attr('data-gallery');
 		var galClass = $(this).attr('data-thumbClass');
@@ -108,6 +118,7 @@ $(function() {
 		});
 	});
 	$('#prevBtn').click(function() {
+		$("#prevBtn").css("pointer-events", "none");
 		var galName = $('#zoomImg').attr('data-galName');
 		var imgNo = parseInt($('#zoomImg').attr('data-imgNo'));
 		var galCount = parseInt($('#zoomImg').attr('data-galCount'));
@@ -120,9 +131,12 @@ $(function() {
 			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
 			$('#zoomImg').attr('data-imgNo', imgNo);
 		});
-		$('#showZoomImg').fadeIn(imgTime);
+		$('#showZoomImg').fadeIn(imgTime, function() {
+			$("#prevBtn").css("pointer-events", "auto");
+		});
 	});
 	$('#nextBtn').click(function() {
+		$("#nextBtn").css("pointer-events", "none");
 		var galName = $('#zoomImg').attr('data-galName');
 		var imgNo = parseInt($('#zoomImg').attr('data-imgNo'));
 		var galCount = parseInt($('#zoomImg').attr('data-galCount'));
@@ -135,11 +149,16 @@ $(function() {
 			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
 			$('#zoomImg').attr('data-imgNo', imgNo);
 		});
-		$('#showZoomImg').fadeIn(imgTime);
+		$('#showZoomImg').fadeIn(imgTime, function() {
+			$("#nextBtn").css("pointer-events", "auto");
+		});
 	});
 
 
 	$('.logoMain').click(function() {
+		if(($('#showCover').is(':visible')) || $('#musicCover').is(':visible')) {
+			return;
+		}
 		$('.showDiv').each(function() {
 			if($(this).is(':visible')) {
 				$(this).fadeOut(function() {

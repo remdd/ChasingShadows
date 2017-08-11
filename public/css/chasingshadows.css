@@ -41,7 +41,9 @@ img {
 .navCol {
 /*	background: pink;*/
 	height: 90vh;
-	position: sticky;
+	position: fixed;
+	padding: 0;
+	margin: 0;
 }
 .iconCol {
 /*	background: pink;*/
@@ -82,6 +84,7 @@ img {
 
 .picControls {
 	position: absolute;
+	color: black;
 	bottom: 0px;
 	font-size: 1.5em;
 	width: 100%;
@@ -91,6 +94,8 @@ img {
 } .picControl {
 	padding: 0 40px 0 40px;
 	text-shadow: 0 0 3px white;
+} #closePopUp {
+	font-size: 0.7em;
 }
 
 
