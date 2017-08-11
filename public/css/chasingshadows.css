@@ -28,15 +28,15 @@ img {
 	font-family: 'Questrial', sans-serif;
 	color: white;
 }
-#musicCover {
-	position: absolute;
-}
 .col {
 	padding: 0;
 }
 .showPane {
 	text-align: center;
 	height: 90vh;
+}
+.showDiv {
+	width: 100%;
 }
 .navCol {
 	height: 90vh;
@@ -144,10 +144,8 @@ ul {
 
 /*	Mini header */
 .miniNavContainer {
-	position: relative;
-	min-height: 35px;
+	height: 35px;
 	width: 100%;
-	background: yellow;
 }
 .miniNav {
 	position: absolute;
@@ -157,13 +155,13 @@ ul {
 	width: 60%;
 	white-space: nowrap;
 	display: inline-block;
-	position: relative;
+/*	position: relative;*/
 	padding-bottom: 10px;
 }
 .miniLogoHeader {
 	padding: 0;
 	margin: 0;
-	display: inline-block;
+	display: block;
 }
 .miniNavBtns {
 	display: inline-block;
@@ -199,6 +197,7 @@ ul {
 	height: 20px;
 	perspective: 300px;
 	position: relative;
+	z-index: 10;
 } .flipBtn {
 	width: 100%;
 	height: 100%;

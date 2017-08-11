@@ -29,13 +29,13 @@
 
 			<div class="col col-md-12 col-sm-12 col-xs-12 visible-md-down hidden-lg miniNavContainer">
 	
-				<div class="col col-md-12 visible-md-down hidden-lg mainNav miniNav">
+				<div class="mainNav miniNav">
 					<div class="miniLogo bigTextSm">
 						<h1 class="miniLogoHeader">Chasing Shadows</h1>
 					</div>
 				</div>
 
-				<div class="col col-md-12 visible-md-down hidden-lg musicNav miniNav invisible">
+				<div class="musicNav miniNav invisible">
 					<div class="miniLogo bigTextSm">
 						<h1 class="miniLogoHeader">Chasing Shadows</h1>
 					</div>
@@ -130,26 +130,28 @@
 				<div class="container-fluid">
 					
 				<!--	Cover image			-->
-					<div id="showCover" class="showDiv row">
-						<div class="col col-lg-12 showLandscapeImg">
-							<img src="img\Cover.JPG">
+					<div class="row">
+						<div id="showCover" class="showDiv">
+							<div class="col col-lg-12">
+								<img src="img\Cover.JPG">
+							</div>
 						</div>
-					</div>
 
-					<div hidden id="musicCover" class="showDiv row">
-						<div class="col col-lg-12 showLandscapeImg">
-							<img src="img\CoverMusic.JPG">
+						<div id="musicCover" class="showDiv">
+							<div class="col col-lg-12">
+								<img src="img\CoverMusic.JPG">
+							</div>
 						</div>
 					</div>
 
 
 				<!--	Thumbnails			-->
-					<div hidden id="showThumbnails" class="showDiv row-fluid">
+					<div id="showThumbnails" class="showDiv row-fluid invisible">
 					</div>
 
 				<!--	Zoomed images	-->
-					<div hidden id="showZoomImg" class="showDiv row">
-						<div class="col col-lg-12 showLandscapeImg">
+					<div id="showZoomImg" class="showDiv row invisible">
+						<div class="col col-lg-12">
 							<img id="zoomImg" src="">
 						</div>
 					</div>
