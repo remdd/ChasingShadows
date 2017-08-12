@@ -38,6 +38,12 @@ img {
 .showDiv {
 	width: 100%;
 }
+#showCover {
+	position: absolute;
+}
+#musicCover {
+	position: absolute;
+}
 .navCol {
 	height: 90vh;
 	position: fixed;
@@ -138,6 +144,9 @@ ul {
 	padding: 0;
 	list-style: none;
 }
+.li a {
+	padding: 0;
+}
 .galLink {
 	padding-left: 15px;
 }
@@ -153,9 +162,9 @@ ul {
 }
 .miniLogo {
 	width: 60%;
+/*	background: yellow;*/
 	white-space: nowrap;
 	display: inline-block;
-/*	position: relative;*/
 	padding-bottom: 10px;
 }
 .miniLogoHeader {
@@ -164,16 +173,30 @@ ul {
 	display: block;
 }
 .miniNavBtns {
-	display: inline-block;
+	text-align: right;
+	display: block;
 	position: absolute;
 	right: 0;
 	top: 0;
+/*	background: pink;*/
+	width: 40%;
 } .miniNavBtns i {
-	font-size: 1.6em;
+	font-size: 2em;
 	color: black;
 	transition: color 1s;
-	padding-left: 10px;
+	padding: 2px 5px;
 }
+.navBtn {
+	display: inline-block;
+	vertical-align: top;
+}
+.miniFlip {
+	padding-top: 3px;
+}
+.dropdown-menu {
+	padding: 10px;
+}
+
 
 /*	Footer icons */
 .footerIcons {

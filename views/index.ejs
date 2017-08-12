@@ -27,7 +27,7 @@
 
 		<!-- Mini-nav 		-->
 
-			<div class="col col-md-12 col-sm-12 col-xs-12 visible-md-down hidden-lg miniNavContainer">
+			<div class="col col-md-12 hidden-lg miniNavContainer">
 	
 				<div class="mainNav miniNav">
 					<div class="miniLogo bigTextSm">
@@ -42,7 +42,34 @@
 				</div>
 
 				<div class="miniNavBtns">
-					<div class="flipContainer">
+					<ul class="navBtn">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars" aria-hidden="true"></i></a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<form>
+									<li>
+										<ul><h3 class="categoryLink">Nature</h3>
+											<li hidden class="galLink galLinkMain" data-pics="14" data-gallery="Flowers" data-thumbClass="thumb4x4"><h3 id="navLinkFlowers">Hampton Court Flower Show</h3></li>
+											<li hidden class="galLink galLinkMain" data-pics="13" data-gallery="Richmond" data-thumbClass="thumbEven"><h3 id="navLinkRichmond">Richmond Park</h3></li>
+											<li hidden class="galLink galLinkMain" data-gallery="Raindrops"><h3 id="navLinkRaindrops">Raindrops</h3></li>
+										</ul>
+										<ul><h3 class="categoryLink">Travel</h3>
+											<li hidden class="galLink galLinkMain" data-pics="22" data-gallery="Stockholm" data-thumbClass="thumbEven"><h3 id="navLinkStockholm">Stockholm</h3></li>
+											<li hidden class="galLink galLinkMain" data-gallery="Cuba"><h3 id="navLinkCuba">Cuba</h3></li>
+											<li hidden class="galLink galLinkMain" data-gallery="Paris"><h3 id="navLinkParis">Paris</h3></li>
+										</ul>
+										<ul><h3 class="categoryLink">Commissions</h3>
+											<li></li>
+										</ul>
+									</li>
+									<li class="divider"></li>
+									<li><h3>About</h3></li>
+								</form>
+							</ul>
+						</li>
+					</ul>
+
+					<div class="flipContainer navBtn miniFlip">
 						<div class="flipBtn">
 							<div class="flipDiv flipFront">
 								<div class="flipTriangleFront"></div>
@@ -52,7 +79,11 @@
 							</div>
 						</div>
 					</div>
+
+
+<!-- 
 					<i class="fa fa-bars" aria-hidden="true"></i>
+ -->
 				</div>
 				
 			</div>
@@ -137,7 +168,7 @@
 							</div>
 						</div>
 
-						<div id="musicCover" class="showDiv">
+						<div id="musicCover" class="showDiv invisible">
 							<div class="col col-lg-12">
 								<img src="img\CoverMusic.JPG">
 							</div>

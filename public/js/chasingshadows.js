@@ -25,7 +25,6 @@ $(function() {
 						$.when($('.mainNav').fadeOut(themeChangeTime)).then(function() {
 							$('.mainNav').addClass('invisible');
 							$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
-							$('.bigText').bigtext({maxfontsize: 40});
 							$('#musicCover').removeClass('invisible').hide().fadeIn(themeChangeTime, function() {
 								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
@@ -40,6 +39,7 @@ $(function() {
 						});
 					}
 					mainTheme = !mainTheme;
+					$('.bigText').bigtext({maxfontsize: 40});
 				});
 			}
 		});
@@ -195,10 +195,7 @@ $(function() {
 	};
 
 	$(window).resize(function() {
-		console.log($(window).width());
 		resizeThumbs();
 	});
-
-	$('#musicCover').addClass('invisible');
 
 });
