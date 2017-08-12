@@ -62,7 +62,9 @@ img {
 }
 
 #showZoomImg {
+	position: absolute;
 	text-align: center;
+	height: 90vh;
 }
 
 
@@ -91,10 +93,11 @@ img {
 .picControls {
 	position: absolute;
 	color: black;
-	bottom: 0px;
+	bottom: 0;
 	font-size: 1.5em;
 	width: 100%;
 	text-align: center;
+	z-index: 5;
 } .controlSpan {
 	margin: 0 auto;
 } .picControl {
