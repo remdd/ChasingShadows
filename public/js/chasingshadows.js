@@ -9,6 +9,7 @@ $(function() {
 	$('.bigTextSm').bigtext({maxfontsize: 30, minfontsize: 18});
 
 	$('.flipBtn').click(function() {
+		$('.dropdown-toggle').dropdown('toggle');
 		$('.picControls').fadeOut(imgTime);
 		$(".flipBtn").css("pointer-events", "none");		// Disable further click events on click
 		$('.flipBtn').toggleClass('flipped');
@@ -23,6 +24,8 @@ $(function() {
 					removeThumbnails();
 					if(mainTheme) {
 						$.when($('.mainNav').fadeOut(themeChangeTime)).then(function() {
+							$('.mainMiniNav').addClass('notShown');
+							$('.musicMiniNav').removeClass('notShown');
 							$('.mainNav').addClass('invisible');
 							$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
 							$('#musicCover').removeClass('invisible').hide().fadeIn(themeChangeTime, function() {
@@ -31,6 +34,8 @@ $(function() {
 						});
 					} else {
 						$.when($('.musicNav').fadeOut(themeChangeTime)).then(function() {
+							$('.musicMiniNav').addClass('notShown');
+							$('.mainMiniNav').removeClass('notShown');
 							$('.musicNav').addClass('invisible');
 							$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
 							$('#showCover').removeClass('invisible').hide().fadeIn(themeChangeTime, function() {
@@ -61,6 +66,7 @@ $(function() {
 	//	Hide any previous displayed image or thumbnails then show correct thumbnails when a gallery name is clicked
 	$('.galLinkMain').click(function() {
 		$('.picControls').fadeOut(imgTime);
+		$('.dropdown-toggle').dropdown('toggle');
 		var galCount = $(this).attr('data-pics');
 		var galName = $(this).attr('data-gallery');
 		var galClass = $(this).attr('data-thumbClass');
