@@ -5,6 +5,21 @@ $(function() {
 	var themeChangeTime = 200;
 	var mainTheme = true;
 
+	var musicTheme = ($('#allDiv').attr('data-maintheme') == 'false');
+	if(musicTheme) {
+		mainTheme = false;
+		$('.musicMiniNav').removeClass('notShown');
+		$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+		$('#musicCover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+		$('.flipBtn').toggleClass('flipped');
+		$('body').toggleClass('blackTheme');
+		$('i').toggleClass('whiteIcons');
+	} else {
+		$('.mainMiniNav').removeClass('notShown');
+		$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+		$('#showCover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+	}
+
 	$('.bigText').bigtext({maxfontsize: 40});
 	$('.bigTextSm').bigtext({maxfontsize: 30, minfontsize: 18});
 

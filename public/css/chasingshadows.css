@@ -1,6 +1,6 @@
-/*html {
-	overflow-y: scroll;			 prevents page moving a few pixels to the left on pages requiring scroll 
-}*/
+html {
+	overflow-y: scroll;			/* prevents page moving a few pixels to the left on pages requiring scroll */
+}
 .allDiv {
 	width: 96%;
 	max-width: 1872px;

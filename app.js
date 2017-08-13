@@ -6,11 +6,18 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(logger('dev'));
 
+var mainTheme;
 
 
 //	ROUTES	//
 app.get('/', function(req, res) {
-	res.render('index');
+	mainTheme = true;
+	res.render('index', {mainTheme: mainTheme});
+});
+
+app.get('/music', function(req, res) {
+	mainTheme = false;
+	res.render('index', {mainTheme: mainTheme});
 });
 
 app.get('/about', function(req, res) {
