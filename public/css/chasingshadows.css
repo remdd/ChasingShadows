@@ -26,7 +26,7 @@ img {
 	color: black;
 }
 .musicNav {
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Bellefair', serif;
 	color: white;
 }
 .col {
@@ -34,7 +34,7 @@ img {
 }
 .showPane {
 	text-align: center;
-	height: calc(90vh - 40px);
+	height: 90vh;
 }
 .showDiv {
 	width: 100%;
@@ -68,11 +68,14 @@ img {
 	height: 90vh;
 }
 
-
-.bigThumbImg {
+.big4ThumbImg {
 	max-width: 50%;
-} .smallThumbImg {
+} .small4ThumbImg {
 	max-width: 25%;
+} .big3ThumbImg {
+	max-width: 50%;
+} .small3ThumbImg {
+	max-width: 33%;
 }
  .thumb4x4 {
 	padding: 0 15px 45px 15px;

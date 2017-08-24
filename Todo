@@ -4,5 +4,7 @@ Chasing shadows todo list
 .	Masonry columns responsive to screen size
 >	Social media / mailto links
 >	About page
-> 	/music routing
+. 	/music routing
+>	Programmatically populate navbars to keep main & mini in sync
+.	Fix pic control positioning on small screens
 

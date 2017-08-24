@@ -81,6 +81,7 @@ $(function() {
 
 	var $grid = $('#showThumbnails').masonry({
 		columnWidth: '.thumbImg',
+		singleMode: true,
 		itemSelector: '.thumbImg'
 	});
 
@@ -99,12 +100,13 @@ $(function() {
 		var galCount = $(this).attr('data-pics');
 		var galName = $(this).attr('data-gallery');
 		var galClass = $(this).attr('data-thumbClass');
+		var galCol = $(this).attr('data-galCol');
 		$('.showDiv').each(function() {
 			if($(this).is(':visible')) {
 				$(this).fadeOut(function() {
 					$(this).addClass('invisible');
 					removeThumbnails();
-					addThumbnails(galName, galClass, galCount);
+					addThumbnails(galName, galClass, galCount, galCol);
 				});
 			}
 		});
@@ -115,11 +117,17 @@ $(function() {
 	}
 
 
-	addThumbnails = function(galName, galClass, galCount) {
+	addThumbnails = function(galName, galClass, galCount, galCol) {
+		console.log(galCol);
+		console.log(galCount);
 		for(var i = 1; i <= galCount; i ++) {
 			var name = galName + '_' + i;
 			var $imgDiv = $('#showThumbnails');
-			$imgDiv.append('<img class="thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+			if(galCol == 3) {
+				$imgDiv.append('<img class="thumbImg 3thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+			} else {
+				$imgDiv.append('<img class="thumbImg 4thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+			}
 			var $img = $imgDiv.children().last();
 			$img.attr('data-name', name);
 			$img.attr('data-galName', galName);
@@ -129,7 +137,7 @@ $(function() {
 			$img.attr('data-name', name);
 			$grid.masonry( 'addItems', $img );
 		}
-		$('.thumbImg').click(function() {
+		$('.thumbImg, .3thumbImg').click(function() {
 			var galName = $(this).attr('data-galName');
 			var name = $(this).attr('data-name');
 			var imgNo = $(this).attr('data-imgNo');
@@ -220,11 +228,15 @@ $(function() {
 
 	function resizeThumbs() {
 		if ($(window).width() > 767) {
-	        $('.thumbImg').removeClass('bigThumbImg');
-	        $('.thumbImg').addClass('smallThumbImg');
+	        $('.4thumbImg').removeClass('big4ThumbImg');
+	        $('.4thumbImg').addClass('small4ThumbImg');
+	        $('.3thumbImg').removeClass('big3ThumbImg');
+	        $('.3thumbImg').addClass('small3ThumbImg');
 	    } else {
-	        $('.thumbImg').removeClass('smallThumbImg');
-	        $('.thumbImg').addClass('bigThumbImg');
+	        $('.4thumbImg').removeClass('small4ThumbImg');
+	        $('.4thumbImg').addClass('big4ThumbImg');
+	        $('.3thumbImg').removeClass('small3ThumbImg');
+	        $('.3thumbImg').addClass('big3ThumbImg');
 	    }
 		$grid.masonry();
 	};
