@@ -12,5 +12,9 @@
     "ejs": "^2.5.7",
     "express": "^4.15.3",
     "morgan": "^1.8.2"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
 }
