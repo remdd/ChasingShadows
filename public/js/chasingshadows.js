@@ -124,9 +124,9 @@ $(function() {
 			var name = galName + '_' + i;
 			var $imgDiv = $('#showThumbnails');
 			if(galCol == 3) {
-				$imgDiv.append('<img class="thumbImg 3thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+				$imgDiv.append('<img class="thumbImg 3thumbImg" src="img/' + galName + '/Thumbs/' + name + '.jpg">');
 			} else {
-				$imgDiv.append('<img class="thumbImg 4thumbImg" src="img/' + galName + '/Thumbs/' + name + '.JPG">');
+				$imgDiv.append('<img class="thumbImg 4thumbImg" src="img/' + galName + '/Thumbs/' + name + '.jpg">');
 			}
 			var $img = $imgDiv.children().last();
 			$img.attr('data-name', name);
@@ -147,7 +147,7 @@ $(function() {
 				$('#zoomImg').attr('data-galName', galName);
 				$('#zoomImg').attr('data-imgNo', imgNo);
 				$('#zoomImg').attr('data-galCount', galCount);
-				$('#zoomImg').attr('src', 'img/' + galName + '/' + name + '.JPG');
+				$('#zoomImg').attr('src', 'img/' + galName + '/' + name + '.jpg');
 				$('#showZoomImg').imagesLoaded(function() {
 					$('#showZoomImg').removeClass('invisible').hide().fadeIn(imgTime);
 					$('.picControls').fadeIn(imgTime);
@@ -180,7 +180,7 @@ $(function() {
 			imgNo--;
 		}
 		$('#showZoomImg').fadeOut(imgTime, function() {
-			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
+			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.jpg');
 			$('#zoomImg').attr('data-imgNo', imgNo);
 			$('#showZoomImg').imagesLoaded(function() {
 				$('#showZoomImg').fadeIn(imgTime, function() {
@@ -200,7 +200,7 @@ $(function() {
 			imgNo++;
 		}
 		$('#showZoomImg').fadeOut(imgTime, function() {
-			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
+			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.jpg');
 			$('#zoomImg').attr('data-imgNo', imgNo);
 			$('#showZoomImg').imagesLoaded(function() {
 				$('#showZoomImg').fadeIn(imgTime, function() {
