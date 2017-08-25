@@ -182,9 +182,11 @@ $(function() {
 		$('#showZoomImg').fadeOut(imgTime, function() {
 			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
 			$('#zoomImg').attr('data-imgNo', imgNo);
-		});
-		$('#showZoomImg').fadeIn(imgTime, function() {
-			$("#prevBtn").css("pointer-events", "auto");
+			$('#showZoomImg').imagesLoaded(function() {
+				$('#showZoomImg').fadeIn(imgTime, function() {
+					$("#prevBtn").css("pointer-events", "auto");
+				});
+			})
 		});
 	});
 	$('#nextBtn').click(function() {
@@ -200,9 +202,11 @@ $(function() {
 		$('#showZoomImg').fadeOut(imgTime, function() {
 			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.JPG');
 			$('#zoomImg').attr('data-imgNo', imgNo);
-		});
-		$('#showZoomImg').fadeIn(imgTime, function() {
-			$("#nextBtn").css("pointer-events", "auto");
+			$('#showZoomImg').imagesLoaded(function() {
+				$('#showZoomImg').fadeIn(imgTime, function() {
+					$("#nextBtn").css("pointer-events", "auto");
+				});
+			})
 		});
 	});
 
