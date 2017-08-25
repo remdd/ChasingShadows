@@ -8,6 +8,7 @@ app.use(logger('dev'));
 
 var mainTheme;
 
+dotenv.config({path: '.env'});				//	Loads environment variables file
 
 //	ROUTES	//
 app.get('/', function(req, res) {
@@ -25,12 +26,6 @@ app.get('/about', function(req, res) {
 });
 
 
-//	HEROKU listener
-// app.listen(process.env.PORT, process.env.IP, function() {
-// 	console.log("Server started");
-// });
-
-//	LOCAL listener
-app.listen(3000, process.env.IP, function() {
+app.listen(process.env.PORT, process.env.IP, function() {
 	console.log("Server started");
 });
