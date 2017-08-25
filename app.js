@@ -1,5 +1,6 @@
 var express 				= require('express'),
 	logger					= require('morgan'),
+	dotenv					= require('dotenv'),
 	app 					= express();
 
 app.set('view engine', 'ejs');
