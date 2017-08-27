@@ -147,6 +147,9 @@ h2 {
 	margin: 0 0 10px 0;
 /*	white-space: nowrap;*/
 }
+h3 a {
+	color: black;
+}
 ul {
 	padding: 0;
 	list-style: none;
@@ -155,6 +158,8 @@ ul {
 	padding: 0;
 }
 .galLink {
+	padding-left: 15px;
+} .extLink {
 	padding-left: 15px;
 }
 

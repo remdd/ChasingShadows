@@ -8,9 +8,12 @@ $(function() {
 	var musicTheme = ($('#allDiv').attr('data-maintheme') == 'false');
 	if(musicTheme) {
 		mainTheme = false;
+		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
 		$('.musicMiniNav').removeClass('notShown');
 		$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
 		$('#musicCover').removeClass('invisible').hide();
+		$('#mainAbout').hide();
+		$('#musicAbout').hide();
 		$('#musicCover').imagesLoaded(function() {
 			$('#musicCover').fadeIn(themeChangeTime);
 		});
@@ -19,9 +22,12 @@ $(function() {
 		$('i').toggleClass('whiteIcons');
 		$('#closePopUp').toggleClass('whiteIcons');
 	} else {
+		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
 		$('.mainMiniNav').removeClass('notShown');
 		$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
 		$('#mainCover').removeClass('invisible').hide();
+		$('#mainAbout').hide();
+		$('#musicAbout').hide();
 		$('#mainCover').imagesLoaded(function() {
 			$('#mainCover').fadeIn(themeChangeTime);
 		});
@@ -47,6 +53,7 @@ $(function() {
 					removeThumbnails();
 					if(mainTheme) {
 						$.when($('.mainNav').fadeOut(themeChangeTime)).then(function() {
+							$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
 							$('.mainMiniNav').addClass('notShown');
 							$('.musicMiniNav').removeClass('notShown');
 							$('.mainNav').addClass('invisible');
@@ -60,6 +67,7 @@ $(function() {
 						});
 					} else {
 						$.when($('.musicNav').fadeOut(themeChangeTime)).then(function() {
+							$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
 							$('.musicMiniNav').addClass('notShown');
 							$('.mainMiniNav').removeClass('notShown');
 							$('.musicNav').addClass('invisible');
@@ -218,17 +226,39 @@ $(function() {
 		$('.showDiv').each(function() {
 			if($(this).is(':visible')) {
 				$(this).fadeOut(function() {
+					$(this).addClass('invisible');
 					$('.picControls').fadeOut(imgTime);
 					removeThumbnails();
 					if(mainTheme) {
-						$('#mainCover').fadeIn(imgTime);
+						$('#mainCover').removeClass('invisible').hide().fadeIn(imgTime);
 					} else {
-						$('#musicCover').fadeIn(imgTime);
+						$('#musicCover').removeClass('invisible').hide().fadeIn(imgTime);
 					}
 				});
 			}
 		});
 	});
+
+	$('.aboutLink').click(function() {
+		console.log('click');
+		if(($('#mainAbout').is(':visible')) || $('#musicAbout').is(':visible')) {
+			return;
+		}
+		$('.showDiv').each(function() {
+			if($(this).is(':visible')) {
+				$(this).fadeOut(function() {
+					$(this).addClass('invisible');
+					$('.picControls').fadeOut(imgTime);
+					removeThumbnails();
+					if(mainTheme) {
+						$('#mainAbout').removeClass('invisible').hide().fadeIn(imgTime);
+					} else {
+						$('#musicAbout').removeClass('invisible').hide().fadeIn(imgTime);
+					}
+				});
+			}
+		});		
+	})
 
 	function resizeThumbs() {
 		if ($(window).width() > 767) {
