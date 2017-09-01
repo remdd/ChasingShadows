@@ -83,6 +83,9 @@ img {
 	padding: 0 15px 30px 15px;
 }
 
+.tooltip-inner {
+	max-width: 400px;
+}
 
 /*#thumbCol1 {
 	background: yellow;
@@ -111,6 +114,9 @@ img {
 	font-size: 0.7em;
 }
 
+.invisible {
+	opacity: 0;
+}
 
 
 /*	Nav 	*/

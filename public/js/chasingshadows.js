@@ -1,9 +1,11 @@
 $(function() {
 
 	var imgTime = 300;
-	var navTime = 200;
-	var themeChangeTime = 200;
+	var navTime = 300;
+	var themeChangeTime = 300;
 	var mainTheme = true;
+
+	$('#emailLinkIcon').tooltip();
 
 	var musicTheme = ($('#allDiv').attr('data-maintheme') == 'false');
 	if(musicTheme) {
@@ -11,12 +13,9 @@ $(function() {
 		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
 		$('.musicMiniNav').removeClass('notShown');
 		$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
-		$('#musicCover').removeClass('invisible').hide();
+		$('#musicCover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 		$('#mainAbout').hide();
 		$('#musicAbout').hide();
-		$('#musicCover').imagesLoaded(function() {
-			$('#musicCover').fadeIn(themeChangeTime);
-		});
 		$('.flipBtn').toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
 		$('i').toggleClass('whiteIcons');
@@ -25,12 +24,9 @@ $(function() {
 		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
 		$('.mainMiniNav').removeClass('notShown');
 		$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
-		$('#mainCover').removeClass('invisible').hide();
+		$('#mainCover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 		$('#mainAbout').hide();
 		$('#musicAbout').hide();
-		$('#mainCover').imagesLoaded(function() {
-			$('#mainCover').fadeIn(themeChangeTime);
-		});
 	}
 
 	$('.bigText').bigtext({maxfontsize: 40});
@@ -48,7 +44,8 @@ $(function() {
 			if($(this).hasClass('invisible')) {
 				return;
 			} else {
-				$(this).fadeOut(function(themeChangeTime) {
+				$.when($(this).fadeOut(themeChangeTime)).then(function() {
+					$(this).hide();
 					$(this).addClass('invisible');
 					removeThumbnails();
 					if(mainTheme) {
@@ -57,12 +54,11 @@ $(function() {
 							$('.mainMiniNav').addClass('notShown');
 							$('.musicMiniNav').removeClass('notShown');
 							$('.mainNav').addClass('invisible');
-							$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
+							$('.musicNav').removeClass('invisible').hide();
+							$('.musicNav').fadeIn(themeChangeTime);
 							$('#musicCover').removeClass('invisible').hide();
-							$('#musicCover').imagesLoaded(function() {
-								$('#musicCover').fadeIn(themeChangeTime, function() {
-									$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
-								});
+							$('#musicCover').fadeIn(themeChangeTime, function() {
+								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
 					} else {
@@ -71,12 +67,9 @@ $(function() {
 							$('.musicMiniNav').addClass('notShown');
 							$('.mainMiniNav').removeClass('notShown');
 							$('.musicNav').addClass('invisible');
-							$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
-							$('#mainCover').removeClass('invisible').hide();
-							$('#mainCover').imagesLoaded(function() {
-								$('#mainCover').fadeIn(themeChangeTime, function() {
-									$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
-								});
+							$('.mainNav').hide().removeClass('invisible').fadeIn(themeChangeTime);
+							$('#mainCover').removeClass('invisible').fadeIn(themeChangeTime, function() {
+								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
 					}

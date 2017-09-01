@@ -1,11 +1,13 @@
 var express 				= require('express'),
 	logger					= require('morgan'),
 	dotenv					= require('dotenv'),
+	favicon					= require('serve-favicon'),
 	app 					= express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(logger('dev'));
+app.use(favicon('public/img/CSFavicon.png'));
 
 var mainTheme;
 
