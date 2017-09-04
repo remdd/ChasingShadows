@@ -10,23 +10,30 @@ $(function() {
 	var musicTheme = ($('#allDiv').attr('data-maintheme') == 'false');
 	if(musicTheme) {
 		mainTheme = false;
-		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
-		$('.musicMiniNav').removeClass('notShown');
-		$('.musicNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
-		$('#musicCover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 		$('#mainAbout').hide();
 		$('#musicAbout').hide();
+		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
+		$('.musicMiniNav').removeClass('invisible');
+		$('#musicBigNav').removeClass('invisible').fadeIn(themeChangeTime);
+		$('#coverImg').attr('src', 'img/CoverMusic.jpg');
+		$('#coverImg').imagesLoaded(function() {
+			$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+		});
 		$('.flipBtn').toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
 		$('i').toggleClass('whiteIcons');
 		$('#closePopUp').toggleClass('whiteIcons');
 	} else {
-		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
-		$('.mainMiniNav').removeClass('notShown');
-		$('.mainNav').removeClass('invisible').hide().fadeIn(themeChangeTime);
-		$('#mainCover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 		$('#mainAbout').hide();
 		$('#musicAbout').hide();
+		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
+		$('.mainMiniNav').removeClass('invisible');
+		$('#mainBigNav').removeClass('invisible').fadeIn(themeChangeTime);
+		$('#coverImg').attr('src', 'img/Cover.jpg');
+		$('#coverImg').imagesLoaded(function() {
+			$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+		});
+
 	}
 
 	$('.bigText').bigtext({maxfontsize: 40});
@@ -35,40 +42,41 @@ $(function() {
 	$('.flipBtn').click(function() {
 		$('.dropdown-toggle').dropdown('toggle');
 		$('.picControls').fadeOut(imgTime);
-		$(".flipBtn").css("pointer-events", "none");		// Disable further click events on click
+		$('.flipBtn').css("pointer-events", "none");		// Disable further click events on click
 		$('.flipBtn').toggleClass('flipped');
-		$('body').toggleClass('blackTheme');
-		$('i').toggleClass('whiteIcons');
-		$('#closePopUp').toggleClass('whiteIcons');
 		$('.showDiv').each(function() {
 			if($(this).hasClass('invisible')) {
 				return;
 			} else {
-				$.when($(this).fadeOut(themeChangeTime)).then(function() {
-					$(this).hide();
-					$(this).addClass('invisible');
+				$('body').toggleClass('blackTheme');
+				$('i').toggleClass('whiteIcons');
+				$('#closePopUp').toggleClass('whiteIcons');
+				$(this).fadeOut(themeChangeTime,function() {
+					$(this).hide().addClass('invisible');
 					removeThumbnails();
 					if(mainTheme) {
-						$.when($('.mainNav').fadeOut(themeChangeTime)).then(function() {
+						$('#mainBigNav').fadeOut(themeChangeTime, function() {
+							$('#mainBigNav').addClass('invisible');
 							$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
-							$('.mainMiniNav').addClass('notShown');
-							$('.musicMiniNav').removeClass('notShown');
-							$('.mainNav').addClass('invisible');
-							$('.musicNav').removeClass('invisible').hide();
-							$('.musicNav').fadeIn(themeChangeTime);
-							$('#musicCover').removeClass('invisible').hide();
-							$('#musicCover').fadeIn(themeChangeTime, function() {
+							$('.mainMiniNav').addClass('invisible');
+							$('#coverImg').attr('src', 'img/CoverMusic.jpg');
+							$('#coverImg').imagesLoaded(function() {
+								$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+								$('#musicBigNav').removeClass('invisible');
+								$('.musicMiniNav').removeClass('invisible');
 								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
 					} else {
-						$.when($('.musicNav').fadeOut(themeChangeTime)).then(function() {
+						$('#musicBigNav').fadeOut(themeChangeTime, function() {
+							$('#musicBigNav').addClass('invisible');
 							$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
-							$('.musicMiniNav').addClass('notShown');
-							$('.mainMiniNav').removeClass('notShown');
-							$('.musicNav').addClass('invisible');
-							$('.mainNav').hide().removeClass('invisible').fadeIn(themeChangeTime);
-							$('#mainCover').removeClass('invisible').fadeIn(themeChangeTime, function() {
+							$('.musicMiniNav').addClass('invisible');
+							$('#coverImg').attr('src', 'img/Cover.jpg');
+							$('#coverImg').imagesLoaded(function() {
+								$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+								$('#mainBigNav').removeClass('invisible');
+								$('.mainMiniNav').removeClass('invisible');
 								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
@@ -213,7 +221,7 @@ $(function() {
 
 
 	$('.logoMain').click(function() {
-		if(($('#mainCover').is(':visible')) || $('#musicCover').is(':visible')) {
+		if($('#cover').is(':visible')) {
 			return;
 		}
 		$('.showDiv').each(function() {
@@ -223,9 +231,9 @@ $(function() {
 					$('.picControls').fadeOut(imgTime);
 					removeThumbnails();
 					if(mainTheme) {
-						$('#mainCover').removeClass('invisible').hide().fadeIn(imgTime);
+						$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 					} else {
-						$('#musicCover').removeClass('invisible').hide().fadeIn(imgTime);
+						$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 					}
 				});
 			}

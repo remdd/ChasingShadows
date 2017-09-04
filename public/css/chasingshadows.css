@@ -39,18 +39,19 @@ img {
 .showDiv {
 	width: 100%;
 }
-#mainCover {
+#cover {
 	position: absolute;
 }
-#musicCover {
+/*#musicCover {
 	position: absolute;
-}
+}*/
 .navCol {
 	height: 90vh;
 	position: fixed;
 	padding: 0;
 	padding-right: 10px;
 	margin: 0;
+	transition: opacity 0.5s;
 }
 .iconCol {
 	height: 90vh;
@@ -222,9 +223,7 @@ ul {
 	font-family: 'Questrial', sans-serif;
 	color: black;
 }
-.notShown {
-	display: none;
-}
+
 
 /*	Footer icons */
 .footerIcons {

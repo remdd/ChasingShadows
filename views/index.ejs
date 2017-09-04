@@ -8,18 +8,15 @@
 	  crossorigin="anonymous"></script>	
 	<script type="text/javascript" src="js/chasingshadows.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-
-	<link href="https://fonts.googleapis.com/css?family=Bellefair|Julius+Sans+One|Nixie+One" rel="stylesheet">
-
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="lib/masonry.pkgd.min.js"></script>
 	<script type="text/javascript" src="lib/bigtext.js"></script>
 	<script type="text/javascript" src="lib/imagesloaded.pkgd.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/chasingshadows.css">
-	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<!-- 	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 </head>
 <body>
 
@@ -68,7 +65,7 @@
 											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="17" data-gallery="Stockholm" data-thumbClass="thumbEven">
 												<h3>Stockholm</h3>
 											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Cuba" data-thumbClass="thumbEven">
+											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="11" data-gallery="Cuba" data-thumbClass="thumbEven">
 												<h3>Cuba</h3>
 											</li>
 											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="15" data-gallery="Paris" data-thumbClass="thumbEven">
@@ -155,7 +152,7 @@
 
 			<div class="col col-lg-2 visible-lg">
 				
-				<div class="col col-lg-2 visible-lg navCol mainNav invisible">
+				<div class="col col-lg-2 visible-lg navCol mainNav invisible" id="mainBigNav">
 					<div>
 						<div class="logo logoMain bigText">
 							<h1 class="logoChasingMain">Chasing</h1>
@@ -176,7 +173,7 @@
 						</ul>
 						<ul><h3 class="categoryLink">Travel</h3>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="17" data-gallery="Stockholm" data-thumbClass="thumbEven"><h3>Stockholm</h3></li>
-							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Cuba" data-thumbClass="thumbEven"><h3>Cuba</h3></li>
+							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="11" data-gallery="Cuba" data-thumbClass="thumbEven"><h3>Cuba</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="15" data-gallery="Paris" data-thumbClass="thumbEven"><h3>Paris</h3></li>
 						</ul>
 						<ul><h3 class="categoryLink">Commissions</h3>
@@ -191,7 +188,7 @@
 					</div>
 				</div>
 
-				<div class="col col-lg-2 visible-lg navCol musicNav invisible">
+				<div class="col col-lg-2 visible-lg navCol musicNav invisible" id="musicBigNav">
 					<div>
 						<div class="logo logoMain bigText">
 							<h1 class="logoChasingMain">Chasing</h1>
@@ -235,17 +232,17 @@
 					
 				<!--	Cover image			-->
 					<div class="row">
-						<div id="mainCover" class="showDiv invisible">
+						<div id="cover" class="showDiv invisible">
 							<div class="col col-lg-12">
-								<img src="img\Cover.jpg">
+								<img id="coverImg" src="img\Cover.jpg">
 							</div>
 						</div>
 
-						<div id="musicCover" class="showDiv invisible">
+<!-- 						<div id="musicCover" class="showDiv invisible">
 							<div class="col col-lg-12">
 								<img src="img\CoverMusic.jpg">
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 
