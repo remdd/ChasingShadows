@@ -21,7 +21,14 @@ img {
 .aboutText {
 	text-transform: none;
 	text-align: left;
-	font-size: 1.25em;
+	font-size: 1.15em;
+	display: flex;
+	align-items: center;
+	height: 75vh;
+}
+.signature {
+	width: 150px;
+	padding: 0 0 10px 0;
 }
 .blackTheme {
 	background: black;
