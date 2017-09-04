@@ -31,13 +31,13 @@
 
 			<div class="col col-md-12 hidden-lg miniNavContainer">
 	
-				<div class="mainNav miniNav invisible">
+				<div class="mainNav miniNav invisible" id="mainMiniLogo">
 					<div class="miniLogo bigTextSm">
 						<h1 class="miniLogoHeader">Chasing Shadows</h1>
 					</div>
 				</div>
 
-				<div class="musicNav miniNav invisible">
+				<div class="musicNav miniNav invisible" id="musicMiniLogo">
 					<div class="miniLogo bigTextSm">
 						<h1 class="miniLogoHeader">Chasing Shadows</h1>
 					</div>
@@ -48,85 +48,98 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu dropdown-menu-right">
-								<form>
-									<li class="mainMiniNav notShown">
-										<ul><h3 class="categoryLink">Nature</h3>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="16" data-gallery="Flowers" data-thumbClass="thumb4x4">
-												<h3>Hampton Court Flower Show</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Richmond" data-thumbClass="thumbEven">
-												<h3>Richmond Park</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="6" data-gallery="SouthDowns" data-thumbClass="thumbEven">
-												<h3>South Downs</h3>
+								<li>
+									<form>
+										<li class="mainMiniNav noDisplay">
+											<ul>
+												<li><h3 class="categoryLink">Nature</h3></li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="16" data-gallery="Flowers" data-thumbClass="thumb4x4">
+													<h3>Hampton Court Flower Show</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Richmond" data-thumbClass="thumbEven">
+													<h3>Richmond Park</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="6" data-gallery="SouthDowns" data-thumbClass="thumbEven">
+													<h3>South Downs</h3>
+												</li>
+											</ul>
+											<ul>
+												<li><h3 class="categoryLink">Travel</h3></li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="17" data-gallery="Stockholm" data-thumbClass="thumbEven">
+													<h3>Stockholm</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Cuba" data-thumbClass="thumbEven">
+													<h3>Cuba</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="15" data-gallery="Paris" data-thumbClass="thumbEven">
+													<h3>Paris</h3>
+												</li>
+											</ul>
+											<ul>
+												<li><h3 class="categoryLink">Commissions</h3></li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="5" data-gallery="WeddingFlowers" data-thumbClass="thumbEven">
+													<h3>Wedding flowers</h3>
+												</li>
+											</ul>
+										</li>
+										<li class="musicMiniNav noDisplay">
+											<ul>
+												<li><h3 class="categoryLink">Gigs</h3></li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="HiddenOrchestra" data-thumbClass="thumb4x4">
+													<h3>Hidden Orchestra</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="Swans" data-thumbClass="thumb4x4">
+													<h3>Swans</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="YussefKamaal" data-thumbClass="thumbEven">
+													<h3>Yussef & Kamaal</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="8" data-gallery="MaxCooper" data-thumbClass="thumbEven">
+													<h3>Max Cooper</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="16" data-gallery="Hipsway" data-thumbClass="thumbEven">
+													<h3>Hipsway</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="20" data-gallery="AJA" data-thumbClass="thumbEven">
+													<h3>AJA</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="9" data-gallery="CDuncan" data-thumbClass="thumbEven">
+													<h3>C Duncan</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="10" data-gallery="TokyoTaboo" data-thumbClass="thumbEven">
+													<h3>Tokyo Taboo</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="EmilianaTorrini" data-thumbClass="thumbEven">
+													<h3>Emiliana Torrini and The Colorist</h3>
+												</li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="9" data-gallery="MatthewHalsall" data-thumbClass="thumbEven">
+													<h3>Matthew Halsall & the Gondwana Orchestra</h3>
+												</li>
+											</ul>
+											<ul>
+												<li><h3 class="categoryLink">Fashion</h3></li>
+												<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="48" data-gallery="Behind-the-scenes" data-thumbClass="thumbEven">
+													<h3>Lulaloop - behind the scenes</h3>
+												</li>
+											</ul>
+										</li>
+										<li class="divider"></li>
+										<li class="mainMiniNav noDisplay"><h3 class="aboutLink">About</h3></li>
+										<li class="musicMiniNav noDisplay"><h3 class="aboutLink">About</h3></li>
+										<ul class="mainMiniNav noDisplay">
+											<li><h3 class="categoryLink">Articles</h3></li>
+											<li hidden class="galLink extLink">
+												<h3><a class="mainArticle" target="_blank" href="http://www.curieuxmagazine.com/preserving-cuba/">Curieux - Preserving Cuba</a></h3>
 											</li>
 										</ul>
-										<ul><h3 class="categoryLink">Travel</h3>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="17" data-gallery="Stockholm" data-thumbClass="thumbEven">
-												<h3>Stockholm</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Cuba" data-thumbClass="thumbEven">
-												<h3>Cuba</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="15" data-gallery="Paris" data-thumbClass="thumbEven">
-												<h3>Paris</h3>
+										<ul class="musicMiniNav noDisplay">
+											<li><h3 class="categoryLink">Links</h3></li>
+											<li hidden class="galLink extLink">
+												<h3><a class="mainArticle" target="_blank" href="http://thequietus.com/articles/23080-lone-taxidermist-aja-ireland-trifle-live-review">The Quietus - AJA</a></h3>
 											</li>
 										</ul>
-										<ul><h3 class="categoryLink">Commissions</h3>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="5" data-gallery="WeddingFlowers" data-thumbClass="thumbEven">
-												<h3>Wedding flowers</h3>
-											</li>
-										</ul>
-									</li>
-									<li class="musicMiniNav notShown">
-										<ul><h3 class="categoryLink">Gigs</h3>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="HiddenOrchestra" data-thumbClass="thumb4x4">
-												<h3>Hidden Orchestra</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="Swans" data-thumbClass="thumb4x4">
-												<h3>Swans</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="YussefKamaal" data-thumbClass="thumbEven">
-												<h3>Yussef & Kamaal</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="8" data-gallery="MaxCooper" data-thumbClass="thumbEven">
-												<h3>Max Cooper</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="16" data-gallery="Hipsway" data-thumbClass="thumbEven">
-												<h3>Hipsway</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="20" data-gallery="AJA" data-thumbClass="thumbEven">
-												<h3>AJA</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="9" data-gallery="CDuncan" data-thumbClass="thumbEven">
-												<h3>C Duncan</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="10" data-gallery="TokyoTaboo" data-thumbClass="thumbEven">
-												<h3>Tokyo Taboo</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="EmilianaTorrini" data-thumbClass="thumbEven">
-												<h3>Emiliana Torrini and The Colorist</h3>
-											</li>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="9" data-gallery="MatthewHalsall" data-thumbClass="thumbEven">
-												<h3>Matthew Halsall & the Gondwana Orchestra</h3>
-											</li>
-										</ul>
-										<ul><h3 class="categoryLink">Fashion</h3>
-											<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="48" data-gallery="Behind-the-scenes" data-thumbClass="thumbEven">
-												<h3>Lulaloop - behind the scenes</h3>
-											</li>
-										</ul>
-									</li>
-									<li class="divider"></li>
-									<li class="mainMiniNav notShown"><h3 class="aboutLink">About</h3></li>
-									<li class="musicMiniNav notShown"><h3 class="aboutLink">About</h3></li>
-									<ul class="mainMiniNav notShown"><h3 class="categoryLink">Articles</h3>
-										<li hidden class="galLink extLink"><h3><a target="_blank" href="http://www.curieuxmagazine.com/preserving-cuba/">Curieux - Preserving Cuba</a></h3></li>
-									</ul>
-									<ul class="musicMiniNav notShown"><h3 class="categoryLink">Links</h3>
-										<li hidden class="galLink extLink"><h3><a target="_blank" href="http://thequietus.com/articles/23080-lone-taxidermist-aja-ireland-trifle-live-review">The Quietus - AJA</a></h3></li>
-									</ul>
-								</form>
+									</form>
+								</li>
 							</ul>
 						</li>
 					</ul>
@@ -169,24 +182,30 @@
 						<br>
 						<br>
 						<br>
-						<ul><h3 class="categoryLink">Nature</h3>
+						<ul>
+							<li><h3 class="categoryLink">Nature</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="16" data-gallery="Flowers" data-thumbClass="thumb4x4"><h3>Hampton Court Flower Show</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Richmond" data-thumbClass="thumbEven"><h3>Richmond Park</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="6" data-gallery="SouthDowns" data-thumbClass="thumbEven"><h3>South Downs</h3></li>
 						</ul>
-						<ul><h3 class="categoryLink">Travel</h3>
+						<ul>
+							<li><h3 class="categoryLink">Travel</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="17" data-gallery="Stockholm" data-thumbClass="thumbEven"><h3>Stockholm</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="12" data-gallery="Cuba" data-thumbClass="thumbEven"><h3>Cuba</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="15" data-gallery="Paris" data-thumbClass="thumbEven"><h3>Paris</h3></li>
 						</ul>
-						<ul><h3 class="categoryLink">Commissions</h3>
+						<ul>
+							<li><h3 class="categoryLink">Commissions</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="5" data-gallery="WeddingFlowers" data-thumbClass="thumbEven"><h3>Wedding flowers</h3></li>
 						</ul>
 						<br>
 						<br>
 						<h3 class="aboutLink">About</h3>
-						<ul><h3 class="categoryLink">Articles</h3>
-							<li hidden class="galLink extLink"><h3><a class="mainArticle" target="_blank" href="http://www.curieuxmagazine.com/preserving-cuba/">Curieux - Preserving Cuba</a></h3></li>
+						<ul>
+							<li><h3 class="categoryLink">Articles</h3></li>
+							<li hidden class="galLink extLink">
+								<h3><a class="mainArticle" target="_blank" href="http://www.curieuxmagazine.com/preserving-cuba/">Curieux - Preserving Cuba</a></h3>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -205,7 +224,8 @@
 						<br>
 						<br>
 						<br>
-						<ul><h3 class="categoryLink">Gigs</h3>
+						<ul>
+							<li><h3 class="categoryLink">Gigs</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="HiddenOrchestra" data-thumbClass="thumb4x4"><h3>Hidden Orchestra</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="Swans" data-thumbClass="thumb4x4"><h3>Swans</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="YussefKamaal" data-thumbClass="thumbEven"><h3>Yussef & Kamaal</h3></li>
@@ -214,17 +234,25 @@
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="20" data-gallery="AJA" data-thumbClass="thumbEven"><h3>AJA</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="9" data-gallery="CDuncan" data-thumbClass="thumbEven"><h3>C Duncan</h3></li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="10" data-gallery="TokyoTaboo" data-thumbClass="thumbEven"><h3>Tokyo Taboo</h3></li>
-							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="EmilianaTorrini" data-thumbClass="thumbEven"><h3>Emiliana Torrini and The Colorist</h3></li>
+							<li hidden class="galLink galLinkMain" data-galCol="3" data-pics="7" data-gallery="EmilianaTorrini" data-thumbClass="thumbEven">
+								<h3>Emiliana Torrini and The Colorist</h3>
+							</li>
 							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="9" data-gallery="MatthewHalsall" data-thumbClass="thumb4x4"><h3>Matthew Halsall & the Gondwana Orchestra</h3></li>
 						</ul>
-						<ul><h3 class="categoryLink">Fashion</h3>
-							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="48" data-gallery="Behind-the-scenes" data-thumbClass="thumbEven"><h3>Lulaloop - behind the scenes</h3></li>
+						<ul>
+							<li><h3 class="categoryLink">Fashion</h3></li>
+							<li hidden class="galLink galLinkMain" data-galCol="4" data-pics="48" data-gallery="Behind-the-scenes" data-thumbClass="thumbEven">
+								<h3>Lulaloop - behind the scenes</h3>
+							</li>
 						</ul>
 						<br>
 						<br>
 						<h3 class="aboutLink">About</h3>
-						<ul><h3 class="categoryLink">Links</h3>
-							<li hidden class="galLink extLink"><h3><a class="musicLink" target="_blank" href="http://thequietus.com/articles/23080-lone-taxidermist-aja-ireland-trifle-live-review">The Quietus - AJA</a></h3></li>
+						<ul>
+							<li><h3 class="categoryLink">Links</h3></li>
+							<li hidden class="galLink extLink">
+								<h3><a class="musicLink" target="_blank" href="http://thequietus.com/articles/23080-lone-taxidermist-aja-ireland-trifle-live-review">The Quietus - AJA</a></h3>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -240,7 +268,7 @@
 					<div class="row">
 						<div id="cover" class="showDiv invisible">
 							<div class="col col-lg-12">
-								<img id="coverImg" src="img/Cover.jpg">
+								<img id="coverImg" src="img/Cover.jpg" alt="Cover image for the Chasing Shadows portfolio.">
 							</div>
 						</div>
 
@@ -259,7 +287,7 @@
 								<p>I am a little FLOPSY and I like taking FLOPSY photografs with me FLOPSY camra :) xxxx</p>
 							</div>
 							<div class="col col-lg-6 col-md-6 col-sm-12">
-								<img src="img/AboutMain.jpg">
+								<img src="img/AboutMain.jpg" alt="Laura Kate Bemrose with her camera.">
 							</div>
 						</div>
 
@@ -268,7 +296,7 @@
 								<p>I am a little FLOPSY and I like taking FLOPSY photografs with me FLOPSY camra :) xxxx</p>
 							</div>
 							<div class="col col-lg-6 col-md-6 col-sm-12">
-								<img src="img/AboutMusic.jpg">
+								<img src="img/AboutMusic.jpg" alt="Laura Kate Bemrose with her camera.">
 							</div>
 						</div>
 					</div>

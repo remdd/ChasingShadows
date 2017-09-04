@@ -29,6 +29,14 @@ img {
 	font-family: 'Bellefair', serif;
 	color: white;
 }
+.mainMiniNav {
+	font-family: 'Spectral', serif;
+	color: black;
+}
+.musicMiniNav {
+	font-family: 'Bellefair', serif;
+	color: black;
+}
 .col {
 	padding: 0;
 }
@@ -117,6 +125,9 @@ img {
 
 .invisible {
 	opacity: 0;
+}
+.noDisplay {
+	display: none;
 }
 
 
@@ -218,14 +229,7 @@ ul {
 .dropdown-menu {
 	padding: 10px;
 }
-.mainMiniNav {
-	font-family: 'Spectral', serif;
-	color: black;
-}
-.musicMiniNav {
-	font-family: 'Questrial', sans-serif;
-	color: black;
-}
+
 
 /*	Footer icons */
 .footerIcons {

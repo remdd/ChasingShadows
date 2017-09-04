@@ -13,7 +13,8 @@ $(function() {
 		$('#mainAbout').hide();
 		$('#musicAbout').hide();
 		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
-		$('.musicMiniNav').removeClass('invisible');
+		$('.musicMiniNav').removeClass('noDisplay');
+		$('#musicMiniLogo').removeClass('invisible');
 		$('#musicBigNav').removeClass('invisible').fadeIn(themeChangeTime);
 		$('#coverImg').attr('src', 'img/CoverMusic.jpg');
 		$('#coverImg').imagesLoaded(function() {
@@ -27,7 +28,8 @@ $(function() {
 		$('#mainAbout').hide();
 		$('#musicAbout').hide();
 		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
-		$('.mainMiniNav').removeClass('invisible');
+		$('.mainMiniNav').removeClass('noDisplay');
+		$('#mainMiniLogo').removeClass('invisible');
 		$('#mainBigNav').removeClass('invisible').fadeIn(themeChangeTime);
 		$('#coverImg').attr('src', 'img/Cover.jpg');
 		$('#coverImg').imagesLoaded(function() {
@@ -57,26 +59,32 @@ $(function() {
 					if(mainTheme) {
 						$('#mainBigNav').fadeOut(themeChangeTime, function() {
 							$('#mainBigNav').addClass('invisible');
+							$('#mainMiniNav').addClass('invisible');
+							$('#mainMiniLogo').addClass('invisible');
 							$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
-							$('.mainMiniNav').addClass('invisible');
+							$('.mainMiniNav').addClass('noDisplay');
 							$('#coverImg').attr('src', 'img/CoverMusic.jpg');
 							$('#coverImg').imagesLoaded(function() {
 								$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 								$('#musicBigNav').removeClass('invisible');
-								$('.musicMiniNav').removeClass('invisible');
+								$('#musicMiniLogo').removeClass('invisible');
+								$('.musicMiniNav').removeClass('noDisplay');
 								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
 					} else {
 						$('#musicBigNav').fadeOut(themeChangeTime, function() {
 							$('#musicBigNav').addClass('invisible');
+							$('#musicMiniNav').addClass('invisible');
+							$('#musicMiniLogo').addClass('invisible');
 							$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
-							$('.musicMiniNav').addClass('invisible');
+							$('.musicMiniNav').addClass('noDisplay');
 							$('#coverImg').attr('src', 'img/Cover.jpg');
 							$('#coverImg').imagesLoaded(function() {
 								$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
 								$('#mainBigNav').removeClass('invisible');
-								$('.mainMiniNav').removeClass('invisible');
+								$('#mainMiniLogo').removeClass('invisible');
+								$('.mainMiniNav').removeClass('noDisplay');
 								$(".flipBtn").css("pointer-events", "auto");		// Re-enable click events
 							});
 						});
@@ -98,8 +106,8 @@ $(function() {
 	//	Show contained galleries when a category title is clicked, hide contents of other categories
 	$('.categoryLink').click(function(e) {
 		if(e.target !== this) {return;}
-		$('.galLink').not($(this).parent().find('li')).hide();
-		$(this).parent().find('li').toggle(navTime);
+		$('.galLink').not($(this).parent().parent().find('.galLink')).hide('fast');
+		$(this).parent().parent().find('.galLink').toggle(navTime);
 	});
 
 	//	Hide any previous displayed image or thumbnails then show correct thumbnails when a gallery name is clicked
@@ -241,7 +249,6 @@ $(function() {
 	});
 
 	$('.aboutLink').click(function() {
-		console.log('click');
 		if(($('#mainAbout').is(':visible')) || $('#musicAbout').is(':visible')) {
 			return;
 		}
