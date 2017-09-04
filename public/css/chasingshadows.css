@@ -154,8 +154,11 @@ h2 {
 	margin: 0 0 10px 0;
 /*	white-space: nowrap;*/
 }
-h3 a {
-	color: black;
+.mainArticle {
+	color: black !important;
+}
+.musicLink {
+	color: white !important;
 }
 ul {
 	padding: 0;
@@ -223,7 +226,6 @@ ul {
 	font-family: 'Questrial', sans-serif;
 	color: black;
 }
-
 
 /*	Footer icons */
 .footerIcons {
