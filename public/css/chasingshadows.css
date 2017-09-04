@@ -18,6 +18,11 @@ img {
 	max-width: 100%;
 	max-height: calc(90vh - 40px);
 }
+.aboutText {
+	text-transform: none;
+	text-align: left;
+	font-size: 1.25em;
+}
 .blackTheme {
 	background: black;
 }
