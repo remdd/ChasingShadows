@@ -22,7 +22,7 @@ $(function() {
 		});
 		$('.flipBtn').toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
-		$('i').toggleClass('whiteIcons');
+		$('.bigIcon').toggleClass('whiteIcons');
 		$('#closePopUp').toggleClass('whiteIcons');
 	} else {
 		$('#mainAbout').hide();
@@ -51,7 +51,7 @@ $(function() {
 				return;
 			} else {
 				$('body').toggleClass('blackTheme');
-				$('i').toggleClass('whiteIcons');
+				$('.bigIcon').toggleClass('whiteIcons');
 				$('#closePopUp').toggleClass('whiteIcons');
 				$(this).fadeOut(themeChangeTime,function() {
 					$(this).hide().addClass('invisible');
