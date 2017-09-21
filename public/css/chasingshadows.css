@@ -18,6 +18,10 @@ img {
 	max-width: 100%;
 	max-height: calc(90vh - 40px);
 }
+h3, .flipBtn, .thumbImg, .logoMain {
+	cursor: pointer;
+	cursor: hand;
+}
 .aboutText {
 	text-transform: none;
 	text-align: left;

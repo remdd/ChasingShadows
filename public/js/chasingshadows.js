@@ -287,4 +287,9 @@ $(function() {
 		resizeThumbs();
 	});
 
+	//	Prevent context menu on right click images, at client's insistence!
+	$("body").on("contextmenu", "img", function(e) {
+	  return false;
+	});
+
 });
