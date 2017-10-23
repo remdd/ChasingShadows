@@ -1,49 +1,56 @@
 $(function() {
 
-	var imgTime = 300;
-	var navTime = 300;
-	var themeChangeTime = 300;
+	const IMGTIME = 300;
+	const NAVTIME = 300;
+	const THEMETIME = 300;
 	var mainTheme = true;
 
 	$('#emailLinkIcon').tooltip();
+	$('.bigText').bigtext({maxfontsize: 40});
+	$('.bigTextSm').bigtext({maxfontsize: 30, minfontsize: 18});
 
+	//	Code to run on first load if '/music' route is taken
 	var musicTheme = ($('#allDiv').attr('data-maintheme') == 'false');
 	if(musicTheme) {
 		mainTheme = false;
-		$('#mainAbout').hide();
-		$('#musicAbout').hide();
+		$('.showDiv').hide();
 		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
 		$('.musicMiniNav').removeClass('noDisplay');
 		$('#musicMiniLogo').removeClass('invisible');
-		$('#musicBigNav').removeClass('invisible').fadeIn(themeChangeTime);
+		$('#musicBigNav').removeClass('invisible').fadeIn(THEMETIME);
 		$('#coverImg').attr('src', 'img/CoverMusic.jpg');
 		$('#coverImg').imagesLoaded(function() {
-			$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+			var state = {
+				showDiv: 'musicCover',
+				firstLoad: true
+			}
+			renderShowPane(state);
 		});
 		$('.flipBtn').toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
 		$('.bigIcon').toggleClass('whiteIcons');
 		$('#closePopUp').toggleClass('whiteIcons');
 	} else {
-		$('#mainAbout').hide();
-		$('#musicAbout').hide();
+		//	Code to run if '/' route is taken
+		$('.showDiv').hide();
 		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
 		$('.mainMiniNav').removeClass('noDisplay');
 		$('#mainMiniLogo').removeClass('invisible');
-		$('#mainBigNav').removeClass('invisible').fadeIn(themeChangeTime);
+		$('#mainBigNav').removeClass('invisible').fadeIn(THEMETIME);
 		$('#coverImg').attr('src', 'img/Cover.jpg');
 		$('#coverImg').imagesLoaded(function() {
-			$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+			var state = {
+				showDiv: 'mainCover',
+				firstLoad: true
+			}
+			renderShowPane(state);
 		});
-
 	}
 
-	$('.bigText').bigtext({maxfontsize: 40});
-	$('.bigTextSm').bigtext({maxfontsize: 30, minfontsize: 18});
 
 	$('.flipBtn').click(function() {
 		$('.dropdown-toggle').dropdown('toggle');
-		$('.picControls').fadeOut(imgTime);
+		$('.picControls').fadeOut(IMGTIME);
 		$('.flipBtn').css("pointer-events", "none");		// Disable further click events on click
 		$('.flipBtn').toggleClass('flipped');
 		$('.showDiv').each(function() {
@@ -53,11 +60,11 @@ $(function() {
 				$('body').toggleClass('blackTheme');
 				$('.bigIcon').toggleClass('whiteIcons');
 				$('#closePopUp').toggleClass('whiteIcons');
-				$(this).fadeOut(themeChangeTime,function() {
+				$(this).fadeOut(THEMETIME,function() {
 					$(this).hide().addClass('invisible');
 					removeThumbnails();
 					if(mainTheme) {
-						$('#mainBigNav').fadeOut(themeChangeTime, function() {
+						$('#mainBigNav').fadeOut(THEMETIME, function() {
 							$('#mainBigNav').addClass('invisible');
 							$('#mainMiniNav').addClass('invisible');
 							$('#mainMiniLogo').addClass('invisible');
@@ -65,7 +72,7 @@ $(function() {
 							$('.mainMiniNav').addClass('noDisplay');
 							$('#coverImg').attr('src', 'img/CoverMusic.jpg');
 							$('#coverImg').imagesLoaded(function() {
-								$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+								$('#cover').removeClass('invisible').hide().fadeIn(THEMETIME);
 								$('#musicBigNav').removeClass('invisible');
 								$('#musicMiniLogo').removeClass('invisible');
 								$('.musicMiniNav').removeClass('noDisplay');
@@ -73,7 +80,7 @@ $(function() {
 							});
 						});
 					} else {
-						$('#musicBigNav').fadeOut(themeChangeTime, function() {
+						$('#musicBigNav').fadeOut(THEMETIME, function() {
 							$('#musicBigNav').addClass('invisible');
 							$('#musicMiniNav').addClass('invisible');
 							$('#musicMiniLogo').addClass('invisible');
@@ -81,7 +88,7 @@ $(function() {
 							$('.musicMiniNav').addClass('noDisplay');
 							$('#coverImg').attr('src', 'img/Cover.jpg');
 							$('#coverImg').imagesLoaded(function() {
-								$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
+								$('#cover').removeClass('invisible').hide().fadeIn(THEMETIME);
 								$('#mainBigNav').removeClass('invisible');
 								$('#mainMiniLogo').removeClass('invisible');
 								$('.mainMiniNav').removeClass('noDisplay');
@@ -94,179 +101,200 @@ $(function() {
 				});
 			}
 		});
+		saveState();
 	});
 
+	//	Initiate Masonry grid to display thumbnails
 	var $grid = $('#showThumbnails').masonry({
 		columnWidth: '.thumbImg',
 		singleMode: true,
 		itemSelector: '.thumbImg'
 	});
 
-
 	//	Show contained galleries when a category title is clicked, hide contents of other categories
 	$('.categoryLink').click(function(e) {
 		if(e.target !== this) {return;}
 		$('.galLink').not($(this).parent().parent().find('.galLink')).hide('fast');
-		$(this).parent().parent().find('.galLink').toggle(navTime);
+		$(this).parent().parent().find('.galLink').toggle(NAVTIME);
 	});
 
-	//	Hide any previous displayed image or thumbnails then show correct thumbnails when a gallery name is clicked
-	$('.galLinkMain').click(function() {
-		$('.picControls').fadeOut(imgTime);
-		$('.dropdown-toggle').dropdown('toggle');
-		var galCount = $(this).attr('data-pics');
-		var galName = $(this).attr('data-gallery');
-		var galClass = $(this).attr('data-thumbClass');
-		var galCol = $(this).attr('data-galCol');
-		$('.showDiv').each(function() {
-			if($(this).is(':visible')) {
-				$(this).fadeOut(function() {
-					$(this).addClass('invisible');
-					removeThumbnails();
-					addThumbnails(galName, galClass, galCount, galCol);
-				});
-			}
-		});
-	});
-
+	//	Clear gallery thumbnails
 	removeThumbnails = function() {
 		$('#showThumbnails').children().remove();
 	}
-
-
-	addThumbnails = function(galName, galClass, galCount, galCol) {
-		console.log(galCol);
-		console.log(galCount);
-		for(var i = 1; i <= galCount; i ++) {
-			var name = galName + '_' + i;
+	//	Add & display thumbnails for a gallery
+	addThumbnails = function(state) {
+		for(var i = 1; i <= state.galCount; i ++) {
 			var $imgDiv = $('#showThumbnails');
-			if(galCol == 3) {
-				$imgDiv.append('<img class="thumbImg 3thumbImg" src="img/' + galName + '/Thumbs/' + name + '.jpg">');
+			if(parseInt(state.galCol) === 3) {
+				$imgDiv.append('<img class="thumbImg 3thumbImg" src="img/' + state.galName + '/Thumbs/' + state.galName + '_' + i + '.jpg">');
 			} else {
-				$imgDiv.append('<img class="thumbImg 4thumbImg" src="img/' + galName + '/Thumbs/' + name + '.jpg">');
+				$imgDiv.append('<img class="thumbImg 4thumbImg" src="img/' + state.galName + '/Thumbs/' + state.galName + '_' + i + '.jpg">');
 			}
 			var $img = $imgDiv.children().last();
-			$img.attr('data-name', name);
-			$img.attr('data-galName', galName);
-			$img.addClass(galClass);
-			$img.attr('data-galCount', galCount);
+			$img.attr('data-galName', state.galName);
+			$img.addClass(state.thumbClass);
+			$img.attr('data-thumbClass', state.thumbClass);
+			$img.attr('data-galCol', state.galCol);
+			$img.attr('data-galCount', state.galCount);
 			$img.attr('data-imgNo', i);
-			$img.attr('data-name', name);
 			$grid.masonry( 'addItems', $img );
 		}
 		$('.thumbImg, .3thumbImg').click(function() {
-			var galName = $(this).attr('data-galName');
-			var name = $(this).attr('data-name');
-			var imgNo = $(this).attr('data-imgNo');
-			var galCount = $(this).attr('data-galCount');
-			$('#showThumbnails').fadeOut(imgTime, function() {
-				$('#showThumbnails').addClass('invisible');
-				$('#zoomImg').attr('data-galName', galName);
-				$('#zoomImg').attr('data-imgNo', imgNo);
-				$('#zoomImg').attr('data-galCount', galCount);
-				$('#zoomImg').attr('src', 'img/' + galName + '/' + name + '.jpg');
-				$('#showZoomImg').imagesLoaded(function() {
-					$('#showZoomImg').removeClass('invisible').hide().fadeIn(imgTime);
-					$('.picControls').fadeIn(imgTime);
-				});
-			});
-		});
-		$('#showThumbnails').imagesLoaded(function() {
-			$('#showThumbnails').removeClass('invisible').hide().fadeIn(imgTime);
-			resizeThumbs();
-			$grid.masonry();
+			var state = {
+				showDiv: 'showZoomImg',
+				galName: $(this).attr('data-galName'),
+				galCount: $(this).attr('data-galCount'),
+				thumbClass: $(this).attr('data-thumbClass'),
+				imgNo: $(this).attr('data-imgNo'),
+				galCol: $(this).attr('data-galCol')
+			}
+			renderShowPane(state);
 		});
 	};
 
 	/*	Popup image controls 	*/
 	$('#closePopUp').click(function() {
-		$('.picControls').fadeOut(imgTime);
-		$('#showZoomImg').fadeOut(imgTime, function() {
-			$('#showZoomImg').addClass('invisible');
-			$('#showThumbnails').removeClass('invisible').hide().fadeIn(imgTime);
-		});
+		var state = {
+			showDiv: 'showThumbnails',
+			galName: $('#zoomImg').attr('data-galName'),
+			galCount: $('#zoomImg').attr('data-galCount'),
+			thumbClass: $('#zoomImg').attr('data-thumbClass'),
+			galCol: $('#zoomImg').attr('data-galCol')
+		}
+		renderShowPane(state);
 	});
 	$('#prevBtn').click(function() {
-		$("#prevBtn").css("pointer-events", "none");
-		var galName = $('#zoomImg').attr('data-galName');
-		var imgNo = parseInt($('#zoomImg').attr('data-imgNo'));
-		var galCount = parseInt($('#zoomImg').attr('data-galCount'));
-		if(imgNo === 1) {
-			imgNo = galCount;
+		var state = getState();
+		$('.picControl').css("pointer-events", "none");
+		if(parseInt(state.imgNo) === 1) {
+			state.imgNo = state.galCount;
 		} else {
-			imgNo--;
+			state.imgNo--;
 		}
-		$('#showZoomImg').fadeOut(imgTime, function() {
-			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.jpg');
-			$('#zoomImg').attr('data-imgNo', imgNo);
-			$('#showZoomImg').imagesLoaded(function() {
-				$('#showZoomImg').fadeIn(imgTime, function() {
-					$("#prevBtn").css("pointer-events", "auto");
-				});
-			})
-		});
+		renderShowPane(state);
 	});
 	$('#nextBtn').click(function() {
-		$("#nextBtn").css("pointer-events", "none");
-		var galName = $('#zoomImg').attr('data-galName');
-		var imgNo = parseInt($('#zoomImg').attr('data-imgNo'));
-		var galCount = parseInt($('#zoomImg').attr('data-galCount'));
-		if(imgNo === galCount) {
-			imgNo = 1;
+		var state = getState();
+		$('.picControl').css("pointer-events", "none");
+		if(parseInt(state.imgNo) === parseInt(state.galCount)) {
+			state.imgNo = 1;
 		} else {
-			imgNo++;
+			state.imgNo++;
 		}
-		$('#showZoomImg').fadeOut(imgTime, function() {
-			$('#zoomImg').attr('src', 'img/' + galName + '/' + galName + '_' + imgNo + '.jpg');
-			$('#zoomImg').attr('data-imgNo', imgNo);
-			$('#showZoomImg').imagesLoaded(function() {
-				$('#showZoomImg').fadeIn(imgTime, function() {
-					$("#nextBtn").css("pointer-events", "auto");
-				});
-			})
-		});
+		renderShowPane(state);
 	});
 
-
+	//	Display landing page on site logo click
 	$('.logoMain').click(function() {
 		if($('#cover').is(':visible')) {
 			return;
 		}
-		$('.showDiv').each(function() {
-			if($(this).is(':visible')) {
-				$(this).fadeOut(function() {
-					$(this).addClass('invisible');
-					$('.picControls').fadeOut(imgTime);
-					removeThumbnails();
-					if(mainTheme) {
-						$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
-					} else {
-						$('#cover').removeClass('invisible').hide().fadeIn(themeChangeTime);
-					}
-				});
-			}
-		});
+		var state = {};
+		if(mainTheme) {
+			state.showDiv = 'mainCover';
+		} else {
+			state.showDiv = 'musicCover';
+		}
+		renderShowPane(state);
 	});
 
+	//	Display 'about' page
 	$('.aboutLink').click(function() {
 		if(($('#mainAbout').is(':visible')) || $('#musicAbout').is(':visible')) {
 			return;
 		}
+		var state = {};
+		if(mainTheme) {
+			state.showDiv = 'mainAbout';
+		} else {
+			state.showDiv = 'musicAbout';
+		}
+		renderShowPane(state);
+	})
+
+	//	Display thumbnails when a gallery name is clicked
+	$('.galLinkMain').click(function() {
+		var state = {
+			showDiv: 'showThumbnails',
+			galName: $(this).attr('data-gallery'),
+			galCount: $(this).attr('data-pics'),
+			thumbClass: $(this).attr('data-thumbClass'),
+			galCol: $(this).attr('data-galCol')
+		}
+		renderShowPane(state);
+	});
+
+	function renderShowPane(state) {
+		if(state.firstLoad) {
+			showSwitch(state);
+			return;
+		}
+		$('.picControl').css('pointer-events', 'none');
+		$('.picControls').fadeOut(IMGTIME);
 		$('.showDiv').each(function() {
 			if($(this).is(':visible')) {
 				$(this).fadeOut(function() {
 					$(this).addClass('invisible');
-					$('.picControls').fadeOut(imgTime);
 					removeThumbnails();
-					if(mainTheme) {
-						$('#mainAbout').removeClass('invisible').hide().fadeIn(imgTime);
-					} else {
-						$('#musicAbout').removeClass('invisible').hide().fadeIn(imgTime);
-					}
+					showSwitch(state)
 				});
 			}
-		});		
-	})
+		});
+	}
+
+	function showSwitch(state) {
+		console.log(state);
+		switch (state.showDiv) {
+			case 'mainCover':
+				$('#cover').removeClass('invisible').hide().fadeIn(THEMETIME, function() {
+					saveState(state);
+				});
+				break;
+			case 'musicCover':
+				$('#cover').removeClass('invisible').hide().fadeIn(THEMETIME, function() {
+					saveState(state);
+				});
+				break;
+			case 'mainAbout':
+				$('#mainAbout').removeClass('invisible').hide().fadeIn(IMGTIME, function() {
+					saveState(state);
+				});
+				break;
+			case 'musicAbout':
+				$('#musicAbout').removeClass('invisible').hide().fadeIn(IMGTIME, function() {
+					saveState(state);
+				});
+				break;
+			case 'showThumbnails':
+				$('.dropdown-toggle').dropdown('toggle');
+				addThumbnails(state);
+				$('#showThumbnails').imagesLoaded(function() {
+					$('#showThumbnails').removeClass('invisible').hide().fadeIn(IMGTIME);
+					resizeThumbs();
+					$grid.masonry();
+					saveState(state);
+				});
+				break;
+			case 'showZoomImg':
+				$('#zoomImg').attr('data-galName', state.galName);
+				$('#zoomImg').attr('data-imgNo', state.imgNo);
+				$('#zoomImg').attr('data-galCount', state.galCount);
+				$('#zoomImg').attr('data-thumbClass', state.thumbClass);
+				$('#zoomImg').attr('data-galCol', state.galCol);
+				$('#zoomImg').attr('src', 'img/' + state.galName + '/' + state.galName + '_' + state.imgNo + '.jpg');
+				$('#showZoomImg').imagesLoaded(function() {
+					$('#showZoomImg').removeClass('invisible').hide().fadeIn(IMGTIME);
+					$('.picControls').fadeIn(IMGTIME, function() {
+						$('.picControl').css('pointer-events', 'auto');
+						saveState(state);
+					});
+				});
+				break;
+			default:
+				break;
+		}
+	}
 
 	function resizeThumbs() {
 		if ($(window).width() > 767) {
@@ -283,13 +311,56 @@ $(function() {
 		$grid.masonry();
 	};
 
+	function saveState(state) {
+		if(state && state.back) {
+			return;
+		}
+		var state = getState();
+		history.pushState(state, '');
+		console.log(history.length);
+		console.log(state);
+	}
+
+	function getState() {
+		var state = {};
+		state.showDiv = $('.showDiv:visible').attr('id');
+		if(state.showDiv === 'cover' && mainTheme) {
+			state.showDiv = 'mainCover'
+		} else if(state.showDiv === 'cover' && !mainTheme) {
+			state.showDiv = 'musicCover'
+		}
+		state.mainTheme = mainTheme;
+		if(state.showDiv === 'showThumbnails') {
+			state.galName = $('.thumbImg').first().attr('data-galName');
+			state.galCount = $('.thumbImg').first().attr('data-galCount');
+			state.thumbClass = $('.thumbImg').first().attr('data-thumbClass');
+			state.galCol = $('.thumbImg').first().attr('data-galCol');
+		} else if(state.showDiv === 'showZoomImg') {
+			state.imgNo = $('#zoomImg').attr('data-imgNo');
+			state.galName = $('#zoomImg').attr('data-galName');
+			state.galCount = $('#zoomImg').attr('data-galCount');
+			state.thumbClass = $('#zoomImg').attr('data-thumbClass');
+			state.galCol = $('#zoomImg').attr('data-galCol');
+		}
+		return state;
+	}
+
+	window.onpopstate = function(e) {
+		if(e.state) {
+			e.state.back = true;
+			console.log("Pop state!");
+			console.log(e.state);
+			renderShowPane(e.state);
+		}
+	}
+
 	$(window).resize(function() {
 		resizeThumbs();
 	});
 
 	//	Prevent context menu on right click images, at client's insistence!
 	$("body").on("contextmenu", "img", function(e) {
-	  return false;
+		return false;
 	});
 
 });
