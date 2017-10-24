@@ -79,7 +79,7 @@ h3, .flipBtn, .thumbImg, .logoMain {
 .showDiv {
 	width: 100%;
 }
-#cover {
+#mainCover, #musicCover {
 	position: absolute;
 	padding: 0 30px;
 }
