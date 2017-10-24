@@ -31,6 +31,8 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	align-items: stretch;
 	height: 80vh;
 	position: relative;
+} .mainAboutText {
+	font-size: 0.85em;
 }
 .aboutFlexDiv {
 	width: 100%;
