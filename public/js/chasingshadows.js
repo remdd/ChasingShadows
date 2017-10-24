@@ -11,44 +11,44 @@ $(function() {
 	$('.bigTextSm').bigtext({maxfontsize: 30, minfontsize: 18});
 	$('.showDiv').hide();
 
-	//	Determine whether '/' or '/music' route was taken by visitor to site & render appropriate landing page & nav controls
-	var musicTheme = ($('#allDiv').attr('data-maintheme') == 'false');
-	if(musicTheme) {				//	Code to run on first load if '/music' route was taken
-		mainThemeFlag = false;
-		$('.instagramLink').attr('href', 'https://www.instagram.com/london_reflected/');
-		$('.musicMiniNav').removeClass('noDisplay');
-		$('#musicMiniLogo').removeClass('invisible');
-		$('#musicBigNav').removeClass('invisible').fadeIn(THEMETIME);
-		$('.coverImg').imagesLoaded(function() {
-			var state = {
-				showDiv: 'musicCover',
-				mainTheme: mainThemeFlag,
-				firstLoad: true
-			}
-			renderShowPane(state);
-		});
-		$('.flipBtn').toggleClass('flipped');
-		$('body').toggleClass('blackTheme');
-		$('.bigIcon').toggleClass('whiteIcons');
-		$('#closePopUp').toggleClass('whiteIcons');
-	} else {
-		//	Code to run if '/' route is taken
-		$('.showDiv').hide();
-		$('.instagramLink').attr('href', 'https://www.instagram.com/chasing.light.and.shadows/');
-		$('.mainMiniNav').removeClass('noDisplay');
-		$('#mainMiniLogo').removeClass('invisible');
-		$('#mainBigNav').removeClass('invisible').fadeIn(THEMETIME);
-		$('.coverImg').imagesLoaded(function() {
-			var state = {
-				showDiv: 'mainCover',
-				mainTheme: mainThemeFlag,
-				firstLoad: true
-			}
-			renderShowPane(state);
-		});
+	//	Setup page on first load - render specific gallery / image if link contains query params, otherwise render '/' or '/music' landing page as appropriate
+	function setInitialState() {
+		var state = {
+			firstLoad: true
+		};
+		if($('#allDiv').attr('data-mainTheme') === 'true') {
+			state.mainTheme = true;
+			state.showDiv = 'mainCover';
+		} else {
+			mainThemeFlag = false;
+			state.mainTheme = false;
+			state.showDiv = 'musicCover';
+		}
+		if($('#allDiv').attr('data-showDiv') != '') {
+			state.showDiv = $('#allDiv').attr('data-showDiv');
+			state.galName = $('#allDiv').attr('data-galName');
+			state.galCount = parseInt($('#allDiv').attr('data-galCount'));
+			state.thumbClass = $('#allDiv').attr('data-thumbClass');
+			state.galCol = parseInt($('#allDiv').attr('data-galCol'));
+			state.imgNo = parseInt($('#allDiv').attr('data-imgNo'));
+		}
+		if(state.mainTheme === true) {
+			$('.mainMiniNav').removeClass('noDisplay');
+			$('#mainMiniLogo').removeClass('invisible');
+			$('#mainBigNav').removeClass('invisible').fadeIn(THEMETIME);
+		} else {
+			$('.musicMiniNav').removeClass('noDisplay');
+			$('#musicMiniLogo').removeClass('invisible');
+			$('#musicBigNav').removeClass('invisible').fadeIn(THEMETIME);
+			flipTheme(state);
+		}
+		renderShowPane(state);
 	}
 
 	function renderShowPane(state) {
+		if($('.dropdown').find('.dropdown-menu').is(':visible')) {
+			$('.dropdown-toggle').dropdown('toggle');
+		}
 		if(state.firstLoad) {					//	On first load of page, just render page without hiding & removing previous elements
 			showSwitch(state);
 			return;
@@ -57,14 +57,16 @@ $(function() {
 			mainThemeFlag = !mainThemeFlag;
 			flipTheme(state);
 		}
-		$('.picControl').css('pointer-events', 'none');
-		$('.picControls').fadeOut(IMGTIME);
+		if(state.showDiv != 'showZoomImg') {
+			$('.picControl').css('pointer-events', 'none');
+			$('.picControls').fadeOut(IMGTIME);
+		}
 		$('.showDiv').each(function() {
 			if($(this).is(':visible')) {
 				$(this).fadeOut(function() {
 					$(this).addClass('invisible');
 					removeThumbnails();
-					showSwitch(state)
+					showSwitch(state);
 				});
 			}
 		});
@@ -93,7 +95,6 @@ $(function() {
 				});
 				break;
 			case 'showThumbnails':
-				$('.dropdown').collapse('hide');
 				addThumbnails(state);
 				$('#showThumbnails').imagesLoaded(function() {
 					$('#showThumbnails').removeClass('invisible').hide().fadeIn(IMGTIME);
@@ -108,13 +109,15 @@ $(function() {
 				$('#zoomImg').attr('data-galCount', state.galCount);
 				$('#zoomImg').attr('data-thumbClass', state.thumbClass);
 				$('#zoomImg').attr('data-galCol', state.galCol);
-				$('#zoomImg').attr('src', 'img/' + state.galName + '/' + state.galName + '_' + state.imgNo + '.jpg');
+				$('#zoomImg').attr('src', '/img/' + state.galName + '/' + state.galName + '_' + state.imgNo + '.jpg');
 				$('#showZoomImg').imagesLoaded(function() {
 					$('#showZoomImg').removeClass('invisible').hide().fadeIn(IMGTIME);
-					$('.picControls').fadeIn(IMGTIME, function() {
-						$('.picControl').css('pointer-events', 'auto');
-						saveState(state);
-					});
+					if(!($('.picControls').is(':visible'))) {
+						$('.picControls').fadeIn(IMGTIME, function() {
+						});
+					}
+					$('.picControl').css('pointer-events', 'auto');
+					saveState(state);
 				});
 				break;
 			default:
@@ -138,13 +141,11 @@ $(function() {
 	});
 
 	flipTheme = function(state) {
-		console.log("Flipping!");
-		$('.dropdown-toggle').dropdown('toggle');
 		$('.flipBtn').css("pointer-events", "none");		// Disable further click events on click
 		$('.flipBtn').toggleClass('flipped');
 		$('body').toggleClass('blackTheme');
 		$('.bigIcon').toggleClass('whiteIcons');
-		$('#closePopUp').toggleClass('whiteIcons');
+		$('.picControl').toggleClass('whiteIcons');
 		if(!mainThemeFlag) {
 			$('#mainBigNav').fadeOut(THEMETIME, function() {
 				$('#mainBigNav, #mainMiniLogo').addClass('invisible');
@@ -171,7 +172,27 @@ $(function() {
 			return;
 		}
 		var state = getState();
-		history.pushState(state, '');	//	Push current state to browser history
+		var url = '/';
+		if(!state.mainTheme) { 
+			url += 'music/'
+		}
+		if(state.showDiv === 'showThumbnails') {
+			url += '?' + 'showDiv=' + state.showDiv + '&';
+			url += 'galName=' + state.galName + '&';
+			url += 'galCount=' + state.galCount + '&';
+			url += 'thumbClass=' + state.thumbClass + '&';
+			url += 'galCol=' + state.galCol;
+		} else if(state.showDiv === 'showZoomImg') {
+			url += '?' + 'showDiv=' + state.showDiv + '&';
+			url += 'galName=' + state.galName + '&';
+			url += 'galCount=' + state.galCount + '&';
+			url += 'thumbClass=' + state.thumbClass + '&';
+			url += 'galCol=' + state.galCol + '&';
+			url += 'imgNo=' + state.imgNo;
+		} else if(state.showDiv === 'mainAbout' || state.showDiv === 'musicAbout') {
+			url += '?' + 'showDiv=' + state.showDiv;
+		}
+		history.pushState(state, '', url);	//	Push current state to browser history
 	}
 
 	function getState() {				//	Get state of current browser window
@@ -197,13 +218,14 @@ $(function() {
 	//	Handle browser 'back' commands
 	window.onpopstate = function(e) {
 		if(e && e.state) {
-			e.state.back = true;			//	Set flag to indicate that this state is being accessed by a browser 'back' command (used to prevent re-saving)
-			renderShowPane(e.state);
+			var state = e.state;
+			state.back = true;			//	Set flag to indicate that this state is being accessed by a browser 'back' command (used to prevent re-saving)
+			renderShowPane(state);
 		}
 	}	
 
 	//	Display landing page on site logo click
-	$('.logoMain').click(function() {
+	$('.logoMain, .miniLogo').click(function() {
 		if($('#mainCover').is(':visible') || $('#musicCover').is(':visible')) { return; }		//	Prevent re-rendering of landing page if already shown
 		var state = {
 			mainTheme: mainThemeFlag
@@ -239,9 +261,9 @@ $(function() {
 		for(var i = 1; i <= state.galCount; i ++) {
 			var $imgDiv = $('#showThumbnails');
 			if(parseInt(state.galCol) === 3) {				//	Display thumbnails in either 3 or 4 column layout per gallery class
-				$imgDiv.append('<img class="thumbImg 3thumbImg" src="img/' + state.galName + '/Thumbs/' + state.galName + '_' + i + '.jpg">');
+				$imgDiv.append('<img class="thumbImg 3thumbImg" src="/img/' + state.galName + '/Thumbs/' + state.galName + '_' + i + '.jpg">');
 			} else {
-				$imgDiv.append('<img class="thumbImg 4thumbImg" src="img/' + state.galName + '/Thumbs/' + state.galName + '_' + i + '.jpg">');
+				$imgDiv.append('<img class="thumbImg 4thumbImg" src="/img/' + state.galName + '/Thumbs/' + state.galName + '_' + i + '.jpg">');
 			}
 			var $img = $imgDiv.children().last();			//	Add image & gallery attributes to each thumbnail
 			$img.attr('data-galName', state.galName);
@@ -342,5 +364,7 @@ $(function() {
 	$("body").on("contextmenu", "img", function(e) {
 		return false;
 	});
+
+	setInitialState();
 
 });

@@ -6,16 +6,16 @@
 	  src="https://code.jquery.com/jquery-3.2.1.min.js"
 	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	  crossorigin="anonymous"></script>	
-	<script type="text/javascript" src="js/chasingshadows.js"></script>
+	<script type="text/javascript" src="/js/chasingshadows.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="lib/masonry.pkgd.min.js"></script>
-	<script type="text/javascript" src="lib/bigtext.js"></script>
-	<script type="text/javascript" src="lib/imagesloaded.pkgd.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/chasingshadows.css">
+	<script type="text/javascript" src="/lib/masonry.pkgd.min.js"></script>
+	<script type="text/javascript" src="/lib/bigtext.js"></script>
+	<script type="text/javascript" src="/lib/imagesloaded.pkgd.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/chasingshadows.css">
 <!-- 	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 
 </head>
@@ -25,7 +25,18 @@
 
 
 
-	<div class="container-fluid allDiv" id="allDiv" data-maintheme=<%= mainTheme %>>
+	<div class="container-fluid allDiv" id="allDiv" 
+		data-maintheme=<%= mainTheme %> 
+		<% if(typeof query !== 'undefined') { %>
+			data-showDiv='<%= query.showDiv %>' 
+			data-galName='<%= query.galName %>' 
+			data-galCount='<%= query.galCount %>' 
+			data-thumbClass='<%= query.thumbClass %>' 
+			data-galCol='<%= query.galCol %>' 
+			data-imgNo='<%= query.imgNo %>'
+		<% } %>
+	>
+
 		<div class="row">
 
 		<!-- Mini-nav 		-->
@@ -287,14 +298,14 @@
 					<div class="row">
 						<div id="mainCover" class="showDiv invisible">
 							<div class="col col-lg-12">
-								<img class="coverImg" src="img/Cover.jpg" alt="Cover image for the Chasing Shadows portfolio.">
+								<img class="coverImg" src="/img/Cover.jpg" alt="Cover image for the Chasing Shadows portfolio.">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div id="musicCover" class="showDiv invisible">
 							<div class="col col-lg-12">
-								<img class="coverImg" src="img/CoverMusic.jpg" alt="Cover image for the Chasing Shadows Music portfolio.">
+								<img class="coverImg" src="/img/CoverMusic.jpg" alt="Cover image for the Chasing Shadows Music portfolio.">
 							</div>
 						</div>
 					</div>
@@ -308,7 +319,7 @@
 								<div class="col col-lg-1 col-md-1 col-sm-0 col-xs-0 mainNav">
 								</div>
 								<div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3 mainNav">
-									<img src="img/AboutMain.jpg" alt="Laura with her camera.">
+									<img src="/img/AboutMain.jpg" alt="Laura with her camera.">
 								</div>
 								<div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1 mainNav">
 								</div>
@@ -317,7 +328,7 @@
 									<p>Chasing Shadows is inspired by my early photography when I first moved to London; shadows and reflections became my signature style. Today I love to photograph nature and the natural world around us. Especially living in a city I find it important to enjoy nature as much as possible and I hope to encourage others to do the same through my photography.</p>
 									<p>Exploring other countries is another passion of mine. Whilst travelling I like to convey the mood, sense and feeling of a place through the small details, colours and natural lighting.</p>
 									<p>I am available for artistic or commercial commissions worldwide. Please contact me with any ideas.</p>
-									<img class="signature" src="img/Signature.png" alt="Laura's signature.">
+									<img class="signature" src="/img/Signature.png" alt="Laura's signature.">
 									<p><a href="mailto:laura@chasingshadowsphotography.com">laura@chasingshadowsphotography.com</a></p>
 								</div>
 								<div class="col col-lg-1 col-md-1 col-sm-0 col-xs-0">
@@ -334,7 +345,7 @@
 								<div class="col col-lg-1 col-md-1 col-sm-0 musicNav">
 								</div>
 								<div class="col col-lg-3 col-md-3 col-sm-3 musicNav">
-									<img src="img/AboutMain.jpg" alt="Laura with her camera.">
+									<img src="/img/AboutMain.jpg" alt="Laura with her camera.">
 								</div>
 								<div class="col col-lg-1 col-md-1 col-sm-1 musicNav">
 								</div>
@@ -343,7 +354,7 @@
 									<p>I have photographed a range of upcoming and established artists ranging from jazz to rock, electronic & indie.</p>
 									<p>Recent collaborations include with alternative fashion brand Lulaloop photographing live music and behind the scenes on editorial shoots.</p>
 									<p>Please contact me for commissions or collaborations.</p>
-									<img class="signature" src="img/SignatureInv.png" alt="Laura's signature.">
+									<img class="signature" src="/img/SignatureInv.png" alt="Laura's signature.">
 									<p><a href="mailto:laura@chasingshadowsphotography.com" class="musicEmailLink">laura@chasingshadowsphotography.com</a></p>
 								</div>
 								<div class="col col-lg-1 col-md-1 col-sm-0">
@@ -361,7 +372,7 @@
 				<!--	Zoomed images	-->
 					<div id="showZoomImg" class="showDiv row invisible">
 						<div class="col col-lg-12">
-							<img id="zoomImg" src="img/Cover.jpg" alt="The enlarged gallery image.">
+							<img id="zoomImg" src="/img/Cover.jpg" alt="The enlarged gallery image.">
 						</div>
 					</div>
 
