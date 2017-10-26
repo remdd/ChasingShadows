@@ -192,7 +192,9 @@ $(function() {
 		} else if(state.showDiv === 'mainAbout' || state.showDiv === 'musicAbout') {
 			url += '?' + 'showDiv=' + state.showDiv;
 		}
-		history.pushState(state, '', url);	//	Push current state to browser history
+		if(history.pushState) {
+			history.pushState(state, '', url);	//	Push current state to browser history
+		}
 	}
 
 	function getState() {				//	Get state of current browser window
