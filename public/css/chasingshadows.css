@@ -80,11 +80,12 @@ h3, .flipBtn, .thumbImg, .logoMain {
 .showDiv {
 	height: calc(90vh - 40px);
 	width: 100%;
+	padding: 0;
 }
 #showZoomImg {
 	position: absolute;
 	text-align: center;
-	padding: 0 30px;
+	padding: 0;
 } #showZoomImg img {
 	max-height: calc(90vh - 70px);
 }
@@ -94,6 +95,9 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	}
 	.showDiv {
 		height: calc(90vh);
+	}
+	#showZoomImg {
+		padding: 0 30px;
 	}
 	#showZoomImg img {
 		max-height: calc(90vh - 35px);
