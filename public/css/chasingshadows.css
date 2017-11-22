@@ -12,6 +12,8 @@ html {
 }
 body {
 	text-transform: uppercase;
+	-webkit-transition: background 0.5s;
+	-o-transition: background 0.5s;
 	transition: background 0.5s;
 }
 img {
@@ -25,9 +27,16 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	text-transform: none;
 	text-align: left;
 	font-size: 1.15em;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
-	align-items: stretch;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
+	        align-items: stretch;
 	height: 80vh;
 	position: relative;
 } .mainAboutText {
@@ -37,10 +46,14 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	width: 100%;
 }
 .aboutPadDivTop {
-	flex-grow: 2;
+	-webkit-box-flex: 2;
+	    -ms-flex-positive: 2;
+	        flex-grow: 2;
 	width: 100%;
 } .aboutPadDivBottom {
-	flex-grow: 3;
+	-webkit-box-flex: 3;
+	    -ms-flex-positive: 3;
+	        flex-grow: 3;
 	width: 100%;
 }
 .musicEmailLink {
@@ -113,6 +126,8 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	padding: 0;
 	padding-right: 10px;
 	margin: 0;
+	-webkit-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
 	transition: opacity 0.5s;
 }
 .iconCol {
@@ -266,6 +281,8 @@ ul {
 } .miniNavBtns i {
 	font-size: 2em;
 	color: black;
+	-webkit-transition: color 1s;
+	-o-transition: color 1s;
 	transition: color 1s;
 	padding: 2px 5px;
 }
@@ -291,6 +308,8 @@ ul {
 	font-size: 1.6em;
 	padding-right: 20px;
 	color: black;
+	-webkit-transition: color 1s;
+	-o-transition: color 1s;
 	transition: color 1s;
 }
 .miniNavIcon i {
@@ -307,18 +326,25 @@ ul {
   	top: 2.5px;
 	width: 20px;
 	height: 20px;
-	perspective: 300px;
+	-webkit-perspective: 300px;
+	        perspective: 300px;
 	position: relative;
 	z-index: 10;
 } .flipBtn {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+	-webkit-transition: -webkit-transform 1s;
+	transition: -webkit-transform 1s;
+	-o-transition: transform 1s;
 	transition: transform 1s;
+	transition: transform 1s, -webkit-transform 1s;
 } .flipDiv {
 	padding: 3px 0 0 4px;
-	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
   	position: absolute;
   	margin: 0;
   	width: 100%;
@@ -328,9 +354,11 @@ ul {
 	background: black;
 } .flipBack {
 	background: white;
-	transform: rotateY( 180deg );
+	-webkit-transform: rotateY( 180deg );
+	        transform: rotateY( 180deg );
 } .flipped {
-	transform: rotateY( 180deg );
+	-webkit-transform: rotateY( 180deg );
+	        transform: rotateY( 180deg );
 } .flipTriangleFront {
 	width: 0;
 	height: 0;
