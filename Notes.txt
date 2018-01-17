@@ -1,0 +1,7 @@
+Image Magick command line cheatsheet:
+
+$ magick mogrify -geometry 400x *.jpg			//	Replaces all jpgs in folder with copies resized to 400px wide
+$ magick mogrify -geometry x1250 *.jpg			//	Replaces all jpgs in folder with copies resized to 1250px tall
+$ rename *.JPG *.jpg 							//	Recapitalize extension
+
+
