@@ -104,6 +104,7 @@ $(function() {
 				});
 				break;
 			case 'showZoomImg':
+				console.log(state.subs);
 				$('#zoomImg').attr('data-galName', state.galName);
 				$('#zoomImg').attr('data-imgNo', state.imgNo);
 				$('#zoomImg').attr('data-galCount', state.galCount);
@@ -117,6 +118,15 @@ $(function() {
 						});
 					}
 					$('.picControl').css('pointer-events', 'auto');
+					if(state.subs) {
+						console.log("Subs!");
+						console.log(state.imgNo);
+						var sub = subsArray[state.imgNo];
+						console.log(sub);
+						$('#subtitle').html(sub);
+					} else {
+						$('#subtitle').html('');
+					}
 					saveState(state);
 				});
 				break;
@@ -256,6 +266,12 @@ $(function() {
 			thumbClass: $(this).attr('data-thumbClass'),
 			galCol: $(this).attr('data-galCol')
 		}
+		if($(this).hasClass('publishedLink')) {
+			state.subs = true;
+		} else {
+			state.subs = false;
+		}
+		console.log(state);
 		renderShowPane(state);
 	});
 	//	Add & display thumbnails for a gallery
@@ -366,6 +382,14 @@ $(function() {
 	$("body").on("contextmenu", "img", function(e) {
 		return false;
 	});
+
+	var subsArray = {
+		'1': 'Stray Landings - Primal Scream Therapy: AJA - <a href="http://straylandings.co.uk/interviews/primal-scream-therapy-aja">link to article</a>'
+	}
+
+
+
+
 
 	setInitialState();
 

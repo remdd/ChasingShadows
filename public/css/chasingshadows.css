@@ -376,3 +376,8 @@ ul {
 	color: white !important;
 	text-shadow: 0 0 3px black;
 }
+
+#subtitle {
+	text-align: center;
+	width: 100%;
+}
