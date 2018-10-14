@@ -4,6 +4,8 @@ $(function() {
 	const NAVTIME = 300;
 	const THEMETIME = 300;
 	var mainThemeFlag = true;
+	var coverImgQueueHandler;
+	var coverImgShowTime = 4000;
 
 	//	Initial setup on page load
 	$('#emailLinkIcon').tooltip();
@@ -42,8 +44,33 @@ $(function() {
 			$('#musicBigNav').removeClass('invisible').fadeIn(THEMETIME);
 			flipTheme(state);
 		}
+		setupCoverImgs();
 		renderShowPane(state);
 	}
+
+	function setupCoverImgs() {
+		console.log($('#mainCover .coverImg').length);
+		for(var i = 0; i < $('#mainCover .coverImg').length; i++) {
+			var btn = '<div class="coverImgBtn" data-coverImg="' + i + '"></div>';
+			console.log(btn);
+			$('#mainCoverImgNav').append(btn);
+		}
+		$('.coverImgBtn').click((e) => {
+			unqueueNextCoverImg();
+			setCoverImg(parseInt($(e.target).attr('data-coverImg')));
+			queueNextCoverImg();
+		})
+		setCoverImg(0);
+	}
+
+	function setCoverImg(num) {
+		$('#mainCover .coverImg').addClass('notShown');
+		$('#mainCover .coverImgBtn').removeClass('selected');
+		$($('#mainCover .coverImg').get(num)).removeClass('notShown');
+		$($('#mainCover .coverImgBtn').get(num)).addClass('selected');
+	}
+
+
 
 	function renderShowPane(state) {
 		if($('.dropdown').find('.dropdown-menu').is(':visible')) {
@@ -72,11 +99,26 @@ $(function() {
 		});
 	}
 
+	function queueNextCoverImg() {
+		coverImgQueueHandler = setTimeout(() => {
+			nextNum = parseInt($('#mainCover .selected').attr('data-coverImg')) + 1 >= $('#mainCover .coverImg').length ? 0 : parseInt($('#mainCover .selected').attr('data-coverImg')) + 1;
+			console.log(nextNum);
+			setCoverImg(nextNum);
+			queueNextCoverImg();
+		}, coverImgShowTime)
+	}
+
+	function unqueueNextCoverImg() {
+		clearTimeout(coverImgQueueHandler);
+	}
+
 	function showSwitch(state) {				//	Render appropriate 'showDiv' for the state being passed
+		unqueueNextCoverImg();
 		switch (state.showDiv) {
 			case 'mainCover':
 				$('#mainCover').removeClass('invisible').hide().fadeIn(THEMETIME, function() {
 					saveState(state);
+					queueNextCoverImg();
 				});
 				break;
 			case 'musicCover':
