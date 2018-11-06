@@ -175,13 +175,21 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	margin: 0 10px -10px 10px;
 	height: 26px;
 	padding: 10px 0;
-	background-color: #ddd;
 	background-clip: content-box;
 	flex-grow: 1;
 	transition: background-color 0.5s linear;
 }
-.coverImgBtn.selected {
+#mainCoverImgNav .coverImgBtn {
+	background-color: #ddd;
+}
+#mainCoverImgNav .coverImgBtn.selected {
 	background-color: #bbb;
+}
+#musicCoverImgNav .coverImgBtn {
+	background-color: #111;
+}
+#musicCoverImgNav .coverImgBtn.selected {
+	background-color: #222;
 }
 
 

@@ -49,25 +49,36 @@ $(function() {
 	}
 
 	function setupCoverImgs() {
-		console.log($('#mainCover .coverImg').length);
 		for(var i = 0; i < $('#mainCover .coverImg').length; i++) {
 			var btn = '<div class="coverImgBtn" data-coverImg="' + i + '"></div>';
 			console.log(btn);
 			$('#mainCoverImgNav').append(btn);
 		}
+		for(var i = 0; i < $('#musicCover .coverImg').length; i++) {
+			var btn = '<div class="coverImgBtn" data-coverImg="' + i + '"></div>';
+			console.log(btn);
+			$('#musicCoverImgNav').append(btn);
+		}
 		$('.coverImgBtn').click((e) => {
 			unqueueNextCoverImg();
-			setCoverImg(parseInt($(e.target).attr('data-coverImg')));
+			setCoverImg(mainThemeFlag, parseInt($(e.target).attr('data-coverImg')));
 			queueNextCoverImg();
 		})
-		setCoverImg(0);
+		setCoverImg(mainThemeFlag, 0);
 	}
 
-	function setCoverImg(num) {
-		$('#mainCover .coverImg').addClass('notShown');
-		$('#mainCover .coverImgBtn').removeClass('selected');
-		$($('#mainCover .coverImg').get(num)).removeClass('notShown');
-		$($('#mainCover .coverImgBtn').get(num)).addClass('selected');
+	function setCoverImg(mainTheme, num) {
+		if(mainTheme) {
+			$('#mainCover .coverImg').addClass('notShown');
+			$('#mainCover .coverImgBtn').removeClass('selected');
+			$($('#mainCover .coverImg').get(num)).removeClass('notShown');
+			$($('#mainCover .coverImgBtn').get(num)).addClass('selected');
+		} else {
+			$('#musicCover .coverImg').addClass('notShown');
+			$('#musicCover .coverImgBtn').removeClass('selected');
+			$($('#musicCover .coverImg').get(num)).removeClass('notShown');
+			$($('#musicCover .coverImgBtn').get(num)).addClass('selected');
+		}
 	}
 
 
@@ -101,10 +112,17 @@ $(function() {
 
 	function queueNextCoverImg() {
 		coverImgQueueHandler = setTimeout(() => {
-			nextNum = parseInt($('#mainCover .selected').attr('data-coverImg')) + 1 >= $('#mainCover .coverImg').length ? 0 : parseInt($('#mainCover .selected').attr('data-coverImg')) + 1;
-			console.log(nextNum);
-			setCoverImg(nextNum);
-			queueNextCoverImg();
+			if(mainThemeFlag) {
+				nextNum = parseInt($('#mainCover .selected').attr('data-coverImg')) + 1 >= $('#mainCover .coverImg').length ? 0 : parseInt($('#mainCover .selected').attr('data-coverImg')) + 1;
+				console.log(nextNum);
+				setCoverImg(mainThemeFlag, nextNum);
+				queueNextCoverImg();
+			} else {
+				nextNum = parseInt($('#musicCover .selected').attr('data-coverImg')) + 1 >= $('#musicCover .coverImg').length ? 0 : parseInt($('#musicCover .selected').attr('data-coverImg')) + 1;
+				console.log(nextNum);
+				setCoverImg(mainThemeFlag, nextNum);
+				queueNextCoverImg();
+			}
 		}, coverImgShowTime)
 	}
 
@@ -118,12 +136,17 @@ $(function() {
 			case 'mainCover':
 				$('#mainCover').removeClass('invisible').hide().fadeIn(THEMETIME, function() {
 					saveState(state);
+					setCoverImg(!mainThemeFlag, 0);
+					setCoverImg(mainThemeFlag, 0);
 					queueNextCoverImg();
 				});
 				break;
 			case 'musicCover':
 				$('#musicCover').removeClass('invisible').hide().fadeIn(THEMETIME, function() {
 					saveState(state);
+					setCoverImg(!mainThemeFlag, 0);
+					setCoverImg(mainThemeFlag, 0);
+					queueNextCoverImg();
 				});
 				break;
 			case 'mainAbout':
