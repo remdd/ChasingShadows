@@ -31,6 +31,7 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	text-transform: none;
 	text-align: left;
 	font-size: 1.15em;
+	line-height: 1.8;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -43,8 +44,12 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	        align-items: stretch;
 	height: 80vh;
 	position: relative;
-} .mainAboutText {
+} .mainAboutText,
+	.musicAboutText  {
 	font-size: 0.85em;
+}
+.publicationList {
+	padding-top: 2em;
 }
 .aboutFlexDiv {
 	width: 100%;
@@ -58,6 +63,12 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	-webkit-box-flex: 3;
 	    -ms-flex-positive: 3;
 	        flex-grow: 3;
+	width: 100%;
+}
+#musicAbout .aboutPadDivBottom {
+	-webkit-box-flex: 1;
+	    -ms-flex-positive: 1;
+	        flex-grow: 1;
 	width: 100%;
 }
 .musicEmailLink {
