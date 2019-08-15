@@ -209,9 +209,9 @@ h3, .flipBtn, .thumbImg, .logoMain {
 	max-width: 33%;
 }
  .thumb4x4 {
-	padding: 0 15px 45px 15px;
+	padding: 0 8px 24px 8px;
 } .thumbEven {
-	padding: 0 15px 30px 15px;
+	padding: 0 8px 16px 8px;
 }
 
 .tooltip-inner {
