@@ -443,3 +443,15 @@ ul {
 	text-align: center;
 	width: 100%;
 }
+
+.aboutL {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.houzz {
+	margin-top: 2em;
+	transform-origin: top right;
+	transform: scale(0.8);
+}
